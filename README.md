@@ -48,15 +48,16 @@ It creates a window with 2 pixels in the middle, that prints A in the terminal w
 
 This was said by ohakola on Slack about setting up the project at home:
 
-This is how I got minilibx working home with a mac. Might help someone:
-Download minilibx from https://projects.intra.42.fr/uploads/document/document/1172/sources.tgz)
-        cp -r ~/Downloads/minilibx /usr/local/lib/minilibx #or wherever
-        cd /user/local/lib/minilibx && make
-        cp *.a /user/local/lib/ #copy compiled files to lib
-        brew cask install xquartz #may need eg. xcode-select --install after #install X11
-        sudo ln -s /opt/X11/include/X11 /usr/local/include/X11
-        #In your makefile add following flags to your compilation:
-        -L /usr/local/lib -lmlx -I /usr/local/X11/include -L/usr/X11/lib -lX11 -lXext -framework OpenGL -framework Appkit
+        This is how I got minilibx working home with a mac. Might help someone:
+        Download minilibx from https://projects.intra.42.fr/uploads/document/document/1172/sources.tgz)
+        
+                cp -r ~/Downloads/minilibx /usr/local/lib/minilibx #or wherever
+                cd /user/local/lib/minilibx && make
+                cp *.a /user/local/lib/ #copy compiled files to lib
+                brew cask install xquartz #may need eg. xcode-select --install after #install X11
+                sudo ln -s /opt/X11/include/X11 /usr/local/include/X11
+                #In your makefile add following flags to your compilation:
+                -L /usr/local/lib -lmlx -I /usr/local/X11/include -L/usr/X11/lib -lX11 -lXext -framework OpenGL -framework Appkit
 
 For now, I don't need to have the minilibx folder on the project, since it will be installed already on the school computers. I am deleting the folder from the repository.
 
