@@ -6,20 +6,19 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/01/21 16:04:51 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/01/21 16:26:01 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
 CFLAG = -Wall -Wextra -Werror -g
-LIBDIR = libft
+LIBDIR = ../libft
 LIBINC = $(LIBDIR)/includes
 INCDIR = .
 SRCDIR =
 LIB = -lft
-SRC = board.c \
-	  print2.c
+SRC = main.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))
