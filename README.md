@@ -1,7 +1,7 @@
 # 8_FDF
 Project fdf done at Hive Helsinki
 
-# Beginning
+# 1 - Beginning. Initial testing and project setup.
 Started this project by trying to make the minilibx work by creating a simple window, and drawing 2 pixels.
 
 For that I made this simple main.c file:
