@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/23 14:25:22 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/01/23 17:15:24 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ typedef struct	s_fdf
 	void		*mlx;
 	void		*win;
 }				t_fdf;
+
+int		ft_abs(int i);
 
 #endif
