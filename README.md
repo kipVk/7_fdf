@@ -1,6 +1,11 @@
 # 8_FDF
 Project fdf done at Hive Helsinki
 
+# TODO:
+        
+        - Remove -g from Makefile
+        - Remove <stdio.h> from fdf.h
+
 # 1 - Beginning. Initial testing and project setup.
 Started this project by trying to make the minilibx work by creating a simple window, and drawing 2 pixels.
 
@@ -139,7 +144,7 @@ At this stage, the project is up and running to start testing how to draw points
 
 TODO:
         - Read file function
-        - 2D array with the values read from the file.
+        - 2D array with the values read from the file. Or perhaps a structure with all the values.
 
 This project needs to read from a file the points that will need to draw in space. These files are of the type:
 
@@ -159,4 +164,86 @@ Where the 2D array represents x and y coordinate, and the numeric value represen
 The points parsed on the file need to be vertex on the grid that will be drawn.
 
 Naturally, the first step would be to read the file and add all those values to the coordinates. I'm thinking a 2D array might work.
+Maybe a structure with all the values there will actually be more useful.
 
+My main function should do the following:
+
+        - Initialize the struct
+        - Open the file
+        - Read the file
+        - Close the file
+        - Initialize the mlx
+        - Create new window
+        - Get the key hooks
+        - Mlx loop
+        - If there's more than one file, show usage.
+
+Read the file function needs to do the following:
+
+        - Allocate memory for the height and width of the map.
+        - Check for errors in the file.
+        - Free in case of error.
+        - Free the line read once the info is stored on the variables.
+        - Get the values into the variables.
+        - Split spaces to get the right values.
+        - Get the numbers.
+
+I have modified the Makefile so the .h are in the includes folder, and the .c are in the srcs folder.
+
+Now it looks like this:
+
+        NAME = fdf
+        CC = gcc
+        CFLAG = -Wall -Wextra -Werror -g
+        SRCDIR = 
+        INCDIR = ../includes
+        LIBDIR = ../libft
+        LIBINC = $(LIBDIR)/includes
+        LIBFT = -lft
+        LIBX = -lmlx
+        SRC = main_win.c
+
+        SOURCES = $(addprefix $(SRCDIR), $(SRC))
+        OBJECTS = $(notdir $(SOURCES:.c=.o))
+
+        all: lib $(NAME)
+
+        lib:
+                make -C $(LIBDIR)
+
+        $(NAME): lib
+                $(CC) $(CFLAG) -I $(INCDIR) -I $(LIBINC) -c $(SOURCES)
+                $(CC) -o $(NAME) $(OBJECTS) -I $(INCDIR) -I $(LIBINC) -L $(LIBDIR) $(LIBFT) $(LIBX) -framework OpenGL -framework AppKit
+
+        clean:
+                rm -f $(OBJECTS)
+                make -C $(LIBDIR) clean
+
+        fclean: clean
+                rm -f $(NAME)
+                make -C $(LIBDIR) fclean
+
+        re: fclean all
+
+        .PHONY: all lib clean fclean re
+
+It compiles the library from the libft folder, and then compiles the program with the system minilibX library.
+
+
+
+
+
+
+
+
+
+
+
+
+
+# References
+
+https://github.com/qst0/ft_libgfx
+https://github.com/GlThibault/FdF
+https://github.com/jraleman/42_FDF
+https://github.com/Kikoman90/FdF
