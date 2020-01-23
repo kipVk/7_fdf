@@ -229,21 +229,21 @@ Now it looks like this:
 
 It compiles the library from the libft folder, and then compiles the program with the system minilibX library.
 
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
+  
+   
+  
+  
+  
+  
+  
+  
+  
 # References
 
-https://github.com/qst0/ft_libgfx
-https://github.com/GlThibault/FdF
-https://github.com/jraleman/42_FDF
-https://github.com/Kikoman90/FdF
+https://github.com/qst0/ft_libgfx  
+https://github.com/GlThibault/FdF  
+https://github.com/jraleman/42_FDF  
+https://github.com/Kikoman90/FdF  
