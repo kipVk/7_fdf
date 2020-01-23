@@ -134,3 +134,29 @@ I have made a Makefile that compiles this with the installed library on the scho
 The -g flag is for debugging on VsCode.
 
 At this stage, the project is up and running to start testing how to draw points.
+
+# 2 - Architecture plan
+
+TODO:
+        - Read file function
+        - 2D array with the values read from the file.
+
+This project needs to read from a file the points that will need to draw in space. These files are of the type:
+
+        0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+        0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+        0  0 10 10  0  0 10 10  0  0  0 10 10 10 10 10  0  0  0
+        0  0 10 10  0  0 10 10  0  0  0  0  0  0  0 10 10  0  0
+        0  0 10 10  0  0 10 10  0  0  0  0  0  0  0 10 10  0  0
+        0  0 10 10 10 10 10 10  0  0  0  0 10 10 10 10  0  0  0
+        0  0  0 10 10 10 10 10  0  0  0 10 10  0  0  0  0  0  0
+        0  0  0  0  0  0 10 10  0  0  0 10 10  0  0  0  0  0  0
+        0  0  0  0  0  0 10 10  0  0  0 10 10 10 10 10 10  0  0
+        0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+        0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+Where the 2D array represents x and y coordinate, and the numeric value represents the z coordinate.
+The points parsed on the file need to be vertex on the grid that will be drawn.
+
+Naturally, the first step would be to read the file and add all those values to the coordinates. I'm thinking a 2D array might work.
+
