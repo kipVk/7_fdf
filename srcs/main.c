@@ -1,4 +1,5 @@
 #include "mlx.h"
+#include "fdf.h"
 #include <unistd.h>
 #include <stdio.h>
 
@@ -78,6 +79,58 @@ void paint_ver_line(void *mlx_ptr, void *win_ptr)
     }
 }
 
+void drawline(int x0, int y0, int x1, int y1, void *mlx_ptr, void *win_ptr)
+{
+    int dx, dy, p, x, y;
+ 
+	dx=x1-x0;
+	dy=y1-y0;
+ 
+	x=x0;
+	y=y0;
+ 
+	p=2*dy-dx;
+ 
+	while(x<x1)
+	{
+		if(p>=0)
+		{
+			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0x000000);
+			y=y+1;
+			p=p+2*dy-2*dx;
+		}
+		else
+		{
+			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0x000000);
+			p=p+2*dy;
+		}
+		x=x+1;
+	}
+}
+
+void line(int x0, int y0, int x1, int y1, void *mlx_ptr, void *win_ptr)
+{
+    int dx;
+    int dy;
+    int sx;
+    int sy;
+    int err;
+    int e2;
+ 
+    dx = ft_abs(x1-x0);
+    dy = ft_abs(y1-y0); 
+    err = (dx>dy ? dx : -dy)/2;
+    sx = x0<x1 ? 1 : -1;
+    sy = y0<y1 ? 1 : -1; 
+    while(x0 != x1 && y0 != y1)
+    {
+        mlx_pixel_put(mlx_ptr, win_ptr, x0, y0, 0x000000);
+        e2 = err;
+        if (e2 >-dx) { err -= dy; x0 += sx; }
+        if (e2 < dy) { err += dx; y0 += sy; }
+    }
+}
+
 int main()
 {
     void *mlx_ptr;
@@ -86,8 +139,9 @@ int main()
     mlx_ptr = mlx_init();
     win_ptr = mlx_new_window(mlx_ptr, 818, 500, "FDF Suomen Lippu");
     paint_background(mlx_ptr, win_ptr);
-    paint_hor_line(mlx_ptr, win_ptr);
-    paint_ver_line(mlx_ptr, win_ptr);
+    //paint_hor_line(mlx_ptr, win_ptr);
+    //paint_ver_line(mlx_ptr, win_ptr);
+    line(20, 20, 520, 120, mlx_ptr, win_ptr);
     /* while (i < 500)
     {
         mlx_pixel_put(mlx_ptr, win_ptr, i, i, 0xFFFFFF);
