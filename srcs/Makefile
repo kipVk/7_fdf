@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/01/24 14:55:13 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/01/24 16:59:35 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@ SRCDIR =
 INCDIR = ../includes
 LIBDIR = ../libft
 LIBINC = $(LIBDIR)/includes
-LIBFT = -lft
-LIBX = -lmlx
+LIBS = -lft -lmlx
+INCLUDES = -I $(INCDIR) -I $(LIBINC)
+FRAMEWORKS = -framework OpenGL -framework AppKit
 SRC = main.c \
 	  draw.c
 
@@ -28,19 +29,24 @@ OBJECTS = $(notdir $(SOURCES:.c=.o))
 all: lib $(NAME)
 
 lib:
-	make -C $(LIBDIR)
+	@make -C $(LIBDIR)
+	@echo "Library compiling...	\033[1;32mdone\033[m"
 
 $(NAME): lib
-	$(CC) $(CFLAG) -I $(INCDIR) -I $(LIBINC) -c $(SOURCES)
-	$(CC) -o $(NAME) $(OBJECTS) -I $(INCDIR) -I $(LIBINC) -L $(LIBDIR) $(LIBFT) $(LIBX) -framework OpenGL -framework AppKit
+	@$(CC) $(CFLAG) $(INCLUDES) -c $(SOURCES)
+	@$(CC) -o $(NAME) $(OBJECTS) -L $(LIBDIR) $(LIBS) $(FRAMEWORKS)
+	@echo "Binary  compiling...	\033[1;32mdone\033[m"
 
 clean:
-	rm -f $(OBJECTS)
-	make -C $(LIBDIR) clean
+	@rm -f $(OBJECTS)
+	@echo "Objects  cleaning...	\033[1;32mdone\033[m"
+	@make -C $(LIBDIR) clean
+	@echo "Library  cleaning...	\033[1;32mdone\033[m"
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBDIR) fclean
+	@rm -f $(NAME)
+	@make -C $(LIBDIR) fclean
+	@echo "Complete cleaning...	\033[1;32mdone\033[m"
 
 re: fclean all
 
