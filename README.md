@@ -160,6 +160,12 @@ This project needs to read from a file the points that will need to draw in spac
         0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
         0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 
+The result should be something like this:
+
+![666](https://github.com/kipVk/7_fdf/blob/master/resources/666.png)
+![mars](https://github.com/kipVk/7_fdf/blob/master/resources/mars.png)
+![42](https://github.com/kipVk/7_fdf/blob/master/resources/42.png)
+
 Where the 2D array represents x and y coordinate, and the numeric value represents the z coordinate.
 The points parsed on the file need to be vertex on the grid that will be drawn.
 
