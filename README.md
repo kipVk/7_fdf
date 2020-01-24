@@ -229,7 +229,83 @@ Now it looks like this:
 
 It compiles the library from the libft folder, and then compiles the program with the system minilibX library.
 
-  
+# 3 - Tests
+
+Managed to make some line drawings on the screen. Made the finnish flag, and the brittish flag, to see how I can pain with different colors and inclinations. I can also paint the background in any color I want.
+
+# 4 - Implementation
+
+By searching on the Spanish, English and French wikipedias for the Bresenham's algorithm, I managed to combine all the pseudocode into some functioning code in draw.c. First we have draw_line, a function that plots the line, calculates que inclinations and distances and based on that, determines if the line goes up or down.
+
+	void	draw_line(t_fdf *fdf)
+	{
+		fdf->dx = ft_abs(fdf->x1 - fdf->x0);
+		fdf->dy = ft_abs(fdf->y1 - fdf->y0);
+		fdf->incx = fdf->x0 < fdf->x1 ? 1 : -1;
+		fdf->incy = fdf->y0 < fdf->y1 ? 1 : -1;
+		if (fdf->dx < fdf->dy)
+			draw_up(fdf);
+		else
+			draw_down(fdf);
+	}
+
+Then calls the specific function for each case:
+
+	void	draw_down(t_fdf *fdf)
+	{
+		int	inc1;
+		int	inc2;
+		int	av;
+		int	i;
+
+		i = 0;
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
+		av = 2 * fdf->dy - fdf->dx;
+		inc1 = 2 * (fdf->dy - fdf->dx);
+		inc2 = 2 * fdf->dy;
+		while (i < fdf->dx)
+		{
+			if (av >= 0)
+			{
+				fdf->y0 = fdf->y0 + fdf->incy;
+				av = av + inc1;
+			}
+			else
+				av = av + inc2;
+			fdf->x0 = fdf->x0 + fdf->incx;
+			mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
+			i++;
+		}
+	}
+
+	void	draw_up(t_fdf *fdf)
+	{
+		int	inc1;
+		int	inc2;
+		int	av;
+		int	i;
+
+		i = 0;
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
+		av = 2 * fdf->dx - fdf->dy;
+		inc1 = 2 * (fdf->dx - fdf->dy);
+		inc2 = 2 * fdf->dx;
+		while (i < fdf->dy)
+		{
+			if (av >= 0)
+			{
+				fdf->x0 = fdf->x0 + fdf->incx;
+				av = av + inc1;
+			}
+			else
+				av = av + inc2;
+			fdf->y0 = fdf->y0 + fdf->incy;
+			mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
+			i++;
+		}
+	}
+
+This achieves the desired results, using the struct t_fdf to store all the variables necessary.
   
  # Clone this repo to vogsphere
 
