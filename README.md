@@ -233,6 +233,8 @@ It compiles the library from the libft folder, and then compiles the program wit
 
 Managed to make some line drawings on the screen. Made the finnish flag, and the brittish flag, to see how I can pain with different colors and inclinations. I can also paint the background in any color I want.
 
+![Suomen Lippu](suomen_lippu)
+
 # 4 - Implementation
 
 By searching on the Spanish, English and French wikipedias for the Bresenham's algorithm, I managed to combine all the pseudocode into some functioning code in draw.c. First we have draw_line, a function that plots the line, calculates que inclinations and distances and based on that, determines if the line goes up or down.
