@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rcenamor  <rcenamor @student.hive.fi>            +#+  +:+       +#+         #
+#    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 16:14:36 by rcenamor          #+#    #+#              #
-#    Updated: 2019/12/17 17:17:51 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/01/24 15:19:24 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ all: $(NAME)
 $(NAME):
 	@$(CC) $(CFLAGS) -I $(INCDIR) -c $(SOURCES)
 	@ar rcs $(NAME) $(OBJECTS)
+	@rm -f $(OBJECTS)
 
 clean:
 	@rm -f $(OBJECTS)
