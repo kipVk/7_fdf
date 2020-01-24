@@ -96,7 +96,8 @@ SRC = ft_memset.c \
 		  ft_arrsort.c \
 		  ft_arrsort_i.c \
 		  ft_swap.c \
-		  ft_factorial.c
+		  ft_factorial.c \
+		  ft_sqrt.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))
