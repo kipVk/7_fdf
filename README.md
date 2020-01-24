@@ -315,6 +315,50 @@ Then calls the specific function for each case:
 
 This achieves the desired results, using the struct t_fdf to store all the variables necessary.
   
+I made the Makefile more interesting by silencing the outputs and printing a nice green message when things go well instead. The result is:
+
+	NAME = fdf
+	CC = gcc
+	CFLAG = -Wall -Wextra -Werror -g
+	SRCDIR = 
+	INCDIR = ../includes
+	LIBDIR = ../libft
+	LIBINC = $(LIBDIR)/includes
+	LIBS = -lft -lmlx
+	INCLUDES = -I $(INCDIR) -I $(LIBINC)
+	FRAMEWORKS = -framework OpenGL -framework AppKit
+	SRC = main.c \
+		draw.c
+
+	SOURCES = $(addprefix $(SRCDIR), $(SRC))
+	OBJECTS = $(notdir $(SOURCES:.c=.o))
+
+	all: lib $(NAME)
+
+	lib:
+		@make -C $(LIBDIR)
+		@echo "Library compiling...	\033[1;32mdone\033[m"
+
+	$(NAME): lib
+		@$(CC) $(CFLAG) $(INCLUDES) -c $(SOURCES)
+		@$(CC) -o $(NAME) $(OBJECTS) -L $(LIBDIR) $(LIBS) $(FRAMEWORKS)
+		@echo "Binary  compiling...	\033[1;32mdone\033[m"
+
+	clean:
+		@rm -f $(OBJECTS)
+		@echo "Objects  cleaning...	\033[1;32mdone\033[m"
+		@make -C $(LIBDIR) clean
+		@echo "Library  cleaning...	\033[1;32mdone\033[m"
+
+	fclean: clean
+		@rm -f $(NAME)
+		@make -C $(LIBDIR) fclean
+		@echo "Complete cleaning...	\033[1;32mdone\033[m"
+
+	re: fclean all
+
+	.PHONY: all lib clean fclean re
+
  # Clone this repo to vogsphere
 
 Go to the kip git hub folder
