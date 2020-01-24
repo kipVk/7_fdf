@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/24 15:55:24 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/01/24 16:08:27 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_up(t_fdf *fdf)
 	int	i;
 
 	i = 0;
-	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, 0x000000);
+	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
 	av = 2 * fdf->dx - fdf->dy;
 	inc1 = 2 * (fdf->dx - fdf->dy);
 	inc2 = 2 * fdf->dx;
@@ -40,7 +40,7 @@ void	draw_up(t_fdf *fdf)
 		else
 			av = av + inc2;
 		fdf->y0 = fdf->y0 + fdf->incy;
-		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, 0x000000);
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
 		i++;
 	}
 }
@@ -58,7 +58,7 @@ void	draw_down(t_fdf *fdf)
 	int	i;
 
 	i = 0;
-	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, 0x000000);
+	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
 	av = 2 * fdf->dy - fdf->dx;
 	inc1 = 2 * (fdf->dy - fdf->dx);
 	inc2 = 2 * fdf->dy;
@@ -72,15 +72,15 @@ void	draw_down(t_fdf *fdf)
 		else
 			av = av + inc2;
 		fdf->x0 = fdf->x0 + fdf->incx;
-		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, 0x000000);
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
 		i++;
 	}
 }
 
 /*
-** Calculates the distances points move in the axis. Then the increments for the 
+** Calculates the distances points move in the axis. Then the increments for the
 ** inclination of the lines. In the case when dy is bigger than dx, we would use
-** draw_high, and draw_low for the opposite case. 
+** draw_high, and draw_low for the opposite case.
 */
 
 void	draw_line(t_fdf *fdf)
@@ -93,4 +93,26 @@ void	draw_line(t_fdf *fdf)
 		draw_up(fdf);
 	else
 		draw_down(fdf);
+}
+
+/*
+** Colors the background with the color defined in the fdf.h file.
+*/
+
+void	paint_background(t_fdf *fdf)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < WIN_H)
+	{
+		j = 0;
+		while (j < WIN_W)
+		{
+			mlx_pixel_put(fdf->mlx, fdf->win, j, i, BG_COLOR);
+			j++;
+		}
+		i++;
+	}
 }
