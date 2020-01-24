@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:33:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/21 15:59:07 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/01/24 11:50:34 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_sqrt(int nb);
 
 /*
 ** PART 2: Additional functions

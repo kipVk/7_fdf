@@ -40,31 +40,27 @@ void paint_background(void *mlx_ptr, void *win_ptr)
 
 void draw_line(t_fdf *fdf, void *mlx_ptr, void *win_ptr)
 {
-    int dx;
-    int dy;
-    int sx;
-    int sy;
     int err;
     int e2;
  
-    dx = ft_abs(fdf->x1 - fdf->x0);
-    dy = ft_abs(fdf->y1 - fdf->y0); 
-    err = (dx > dy ? dx : -dy) / 2;
-    sx = fdf->x0 < fdf->x1 ? 1 : -1;
-    sy = fdf->y0 < fdf->y1 ? 1 : -1; 
+    fdf->dx = ft_abs(fdf->x1 - fdf->x0);
+    fdf->dy = ft_abs(fdf->y1 - fdf->y0); 
+    err = (fdf->dx > fdf->dy ? fdf->dx : -fdf->dy) / 2;
+    fdf->incx = fdf->x0 < fdf->x1 ? 1 : -1;
+    fdf->incy = fdf->y0 < fdf->y1 ? 1 : -1; 
     while(fdf->x0 != fdf->x1 && fdf->y0 != fdf->y1)
     {
         mlx_pixel_put(mlx_ptr, win_ptr, fdf->x0, fdf->y0, 0x000000);
         e2 = err;
-        if (e2 > -dx)
+        if (e2 > -fdf->dx)
         {
-            err -= dy;
-            fdf->x0 += sx;
+            err -= fdf->dy;
+            fdf->x0 += fdf->incx;
         }
-        if (e2 < dy)
+        if (e2 < fdf->dy)
         {
-            err += dx;
-            fdf->y0 += sy;
+            err += fdf->dx;
+            fdf->y0 += fdf->incy;
         }
     }
 }
