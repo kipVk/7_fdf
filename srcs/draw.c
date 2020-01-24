@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/24 14:54:45 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/01/24 15:39:07 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ void	draw_low(t_fdf *fdf)
 	}
 }
 
-void    draw_line(t_fdf *fdf)
+void	draw_line(t_fdf *fdf)
 {
-    fdf->dx = ft_abs(fdf->x1 - fdf->x0);
-    fdf->dy = ft_abs(fdf->y1 - fdf->y0);
-    fdf->incx = fdf->x0 < fdf->x1 ? 1 : -1;
-    fdf->incy = fdf->y0 < fdf->y1 ? 1 : -1;
-    if (fdf->dx < fdf->dy)
-        draw_high(fdf);
-    else
-        draw_low(fdf);
+	fdf->dx = ft_abs(fdf->x1 - fdf->x0);
+	fdf->dy = ft_abs(fdf->y1 - fdf->y0);
+	fdf->incx = fdf->x0 < fdf->x1 ? 1 : -1;
+	fdf->incy = fdf->y0 < fdf->y1 ? 1 : -1;
+	if (fdf->dx < fdf->dy)
+		draw_high(fdf);
+	else
+		draw_low(fdf);
 }
