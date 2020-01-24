@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/01/23 16:11:40 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/01/24 14:55:13 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ LIBDIR = ../libft
 LIBINC = $(LIBDIR)/includes
 LIBFT = -lft
 LIBX = -lmlx
-SRC = main.c
+SRC = main.c \
+	  draw.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))

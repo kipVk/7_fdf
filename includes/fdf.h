@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/24 12:09:55 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:53:44 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,13 @@ typedef struct	s_fdf
 	int			incx;
 	int			incy;
 }				t_fdf;
+
+/*
+** Draw
+*/
+
+void			draw_line(t_fdf *fdf);
+void			draw_low(t_fdf *fdf);
+void			draw_high(t_fdf *fdf);
 
 #endif
