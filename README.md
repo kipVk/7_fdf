@@ -233,7 +233,7 @@ It compiles the library from the libft folder, and then compiles the program wit
 
 Managed to make some line drawings on the screen. Made the finnish flag, and the brittish flag, to see how I can pain with different colors and inclinations. I can also paint the background in any color I want.
 
-![Suomen Lippu](suomen_lippu)
+![Suomen Lippu](https://github.com/kipVk/7_fdf/blob/master/resources/suomen_lippu.png)
 
 # 4 - Implementation
 
