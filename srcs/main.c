@@ -38,17 +38,60 @@ void paint_background(void *mlx_ptr, void *win_ptr)
     
 }
 
-void draw_line(t_fdf *fdf, void *mlx_ptr, void *win_ptr)
+void	draw_pos(t_fdf *fdf)
 {
-    int err;
-    int e2;
- 
-    fdf->dx = ft_abs(fdf->x1 - fdf->x0);
-    fdf->dy = ft_abs(fdf->y1 - fdf->y0); 
-    err = (fdf->dx > fdf->dy ? fdf->dx : -fdf->dy) / 2;
-    fdf->incx = fdf->x0 < fdf->x1 ? 1 : -1;
-    fdf->incy = fdf->y0 < fdf->y1 ? 1 : -1; 
-    while(fdf->x0 != fdf->x1 && fdf->y0 != fdf->y1)
+	int	inc1;
+	int	inc2;
+	int	e;
+	int	i;
+
+	i = 0;
+	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, 0x000000);
+	e = (2 * fdf->dx) - fdf->dy;
+	inc1 = 2 * (fdf->dx - fdf->dy);
+	inc2 = 2 * fdf->dx;
+	while (i < fdf->dy)
+	{
+		if (e >= 0)
+		{
+			fdf->x0 = fdf->x0 + fdf->incx;
+			e = e + inc1;
+		}
+		else
+			e = e + inc2;
+		fdf->y0 = fdf->y0 + fdf->incy;
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, 0x000000);
+		i++;
+	}
+}
+
+void	draw_neg(t_fdf *fdf)
+{
+	int	inc1;
+	int	inc2;
+	int	e;
+	int	i;
+
+	i = 0;
+	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, 0x000000);
+	e = (2 * fdf->dy) - fdf->dx;
+	inc1 = 2 * (fdf->dy - fdf->dx);
+	inc2 = 2 * fdf->dy;
+	while (i < fdf->dx)
+	{
+		if (e >= 0)
+		{
+			fdf->y0 = fdf->y0 + fdf->incy;
+			e = e + inc1;
+		}
+		else
+			e = e + inc2;
+		fdf->x0 = fdf->x0 + fdf->incx;
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, 0x000000);
+		i++;
+	}
+}
+  /*   while(fdf->x0 != fdf->x1 && fdf->y0 != fdf->y1)
     {
         mlx_pixel_put(mlx_ptr, win_ptr, fdf->x0, fdf->y0, 0x000000);
         e2 = err;
@@ -63,24 +106,49 @@ void draw_line(t_fdf *fdf, void *mlx_ptr, void *win_ptr)
             fdf->y0 += fdf->incy;
         }
     }
+} */
+
+void draw_line(t_fdf *fdf)
+{
+    //int err;
+    //int e2;
+ 
+    fdf->dx = ft_abs(fdf->x1 - fdf->x0);
+    fdf->dy = ft_abs(fdf->y1 - fdf->y0); 
+    //err = (fdf->dx > fdf->dy ? fdf->dx : -fdf->dy) / 2;
+    fdf->incx = fdf->x0 < fdf->x1 ? 1 : -1;
+    fdf->incy = fdf->y0 < fdf->y1 ? 1 : -1;
+    if (fdf->dx < fdf->dy)
+        draw_pos(fdf);
+    else
+        draw_neg(fdf);
 }
 
 int main()
 {
-    void    *mlx_ptr;
-    void    *win_ptr;
     t_fdf   fdf;
 
-    fdf.x0 = 20;
-    fdf.x1 = 21;
-    fdf.y0 = 21;
-    fdf.y1 = 105;
-    mlx_ptr = mlx_init();
-    win_ptr = mlx_new_window(mlx_ptr, 818, 500, "FDF");
-    paint_background(mlx_ptr, win_ptr);
-    draw_line(&fdf, mlx_ptr, win_ptr);
-    //mlx_key_hook(win_ptr, key_press, mlx_ptr);
-    mlx_hook(win_ptr, 2, 0, key_press, mlx_ptr);
-    mlx_hook(win_ptr, 4, 0, mouse_press, mlx_ptr);
-    mlx_loop(mlx_ptr);
+    fdf.x0 = 100;
+    fdf.y0 = 100;
+    fdf.x1 = 100;
+    fdf.y1 = 200;
+    fdf.mlx = mlx_init();
+    fdf.win = mlx_new_window(fdf.mlx, 818, 500, "FDF");
+    paint_background(fdf.mlx, fdf.win);
+    draw_line(&fdf);
+    fdf.x0 = 100;
+    fdf.y0 = 200;
+    fdf.x1 = 300;
+    fdf.y1 = 200;
+    fdf.x = 0;
+	fdf.y = 0;
+	fdf.dx = 0;
+	fdf.dy = 0;
+	fdf.incx = 0;
+    fdf.incy = 0;
+    draw_line(&fdf);
+    //mlx_key_hook(fdf.win, key_press, fdf.mlx);
+    mlx_hook(fdf.win, 2, 0, key_press, fdf.mlx);
+    mlx_hook(fdf.win, 4, 0, mouse_press, fdf.mlx);
+    mlx_loop(fdf.mlx);
 }
