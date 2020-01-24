@@ -231,7 +231,14 @@ It compiles the library from the libft folder, and then compiles the program wit
 
   
   
-  
+ # Clone this repo to vogsphere
+
+Go to the kip git hub folder
+        
+        git remote add origin2 vogsphere@vogsphere.hive.fi:intra/2020/activities/fdf/rcenamor
+        git push -f origin2 master
+
+With this, the vogsphere will have exactly the same branches, commits and pushes as the kvk repository
   
    
   
