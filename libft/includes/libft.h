@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:33:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/30 16:15:16 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/01/30 17:03:17 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,6 @@ void				ft_arrsort_i(int *arr, unsigned int len,
 void				ft_swap(int *a, int *b);
 unsigned long		ft_factorial(unsigned long nbr);
 int					ft_file_line_count(int fd);
+void				ft_puterr(char *msg, int err);
 
 #endif
