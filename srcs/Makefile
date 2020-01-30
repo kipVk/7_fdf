@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/01/24 16:59:35 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/01/30 17:10:14 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ LIBS = -lft -lmlx
 INCLUDES = -I $(INCDIR) -I $(LIBINC)
 FRAMEWORKS = -framework OpenGL -framework AppKit
 SRC = main.c \
-	  draw.c
+	  draw.c \
+	  read.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))

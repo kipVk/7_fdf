@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/30 16:16:47 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/01/30 17:08:32 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct	s_fdf
 	int			dy;
 	int			incx;
 	int			incy;
+	int			lines;
+	int			**map;
 }				t_fdf;
 
 /*
@@ -46,6 +48,7 @@ typedef struct	s_fdf
 # define WIN_W 818
 # define LINE_COLOR 0x000000
 # define BG_COLOR 0xFFFFFF
+# define WIN_NAME "FDF"
 
 /*
 ** Draw
@@ -61,5 +64,11 @@ void			paint_background(t_fdf *fdf);
 */
 
 void			test_line(t_fdf *fdf);
+
+/*
+** Read
+*/
+
+void	read_file(int fd, t_fdf *fdf);
 
 #endif
