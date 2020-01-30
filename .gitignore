@@ -4,6 +4,6 @@ _DS_Store
 
 .DS_Store
 
-.o
+*.o
 
-.a
+*.a
