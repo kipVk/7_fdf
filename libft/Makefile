@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 16:14:36 by rcenamor          #+#    #+#              #
-#    Updated: 2020/01/24 16:49:27 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/01/30 16:14:57 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,8 @@ SRC = ft_memset.c \
 		  ft_arrsort_i.c \
 		  ft_swap.c \
 		  ft_factorial.c \
-		  ft_sqrt.c
+		  ft_sqrt.c \
+		  ft_file_line_count.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))

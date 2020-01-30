@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/24 16:08:05 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/01/30 16:16:47 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 # define FDF_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include "libft.h"
 # include "mlx.h"
 
 # include <stdio.h>
+
+# include <unistd.h>
 
 typedef struct	s_fdf
 {
@@ -52,5 +55,11 @@ void			draw_line(t_fdf *fdf);
 void			draw_down(t_fdf *fdf);
 void			draw_up(t_fdf *fdf);
 void			paint_background(t_fdf *fdf);
+
+/*
+** Test
+*/
+
+void			test_line(t_fdf *fdf);
 
 #endif

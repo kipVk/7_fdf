@@ -359,6 +359,23 @@ I made the Makefile more interesting by silencing the outputs and printing a nic
 
 	.PHONY: all lib clean fclean re
 
+Now that we can draw lines in all directions, it's time to start reading files.
+
+I've added the function ft_file_line_count to the library:
+
+	int		ft_file_line_count(int fd)
+	{
+		char 	*line;
+		int		count;
+
+		count = 0;
+		while (get_next_line(fd, &line) == 1)
+			count++;
+		return (count);
+	}
+
+With this function we can know how big the array is going to be.
+
  # Clone this repo to vogsphere
 
 Go to the kip git hub folder
