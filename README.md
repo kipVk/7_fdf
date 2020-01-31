@@ -376,6 +376,25 @@ I've added the function ft_file_line_count to the library:
 
 With this function we can know how big the array is going to be.
 
+I made the function:
+
+	void	get_map_value(t_fdf *fdf, int row, char *line)
+	{
+		int i;
+		char **str;
+
+		i = 0;
+		str = ft_split_whitespaces(line);
+		if (!(fdf->map[row] = (int *)malloc(sizeof(int) * ft_count_words(line))))
+			ft_puterr("ERROR: Memory Allocation error for fdf.map.", 1);
+		while (str[i])
+		{
+			fdf->map[row][i] = ft_atoi(str[i]);
+			i++;
+		}
+	}
+
+That splits the line by the spaces, and saves on the 2D array fdf->map the values of it, already on int format.
  # Clone this repo to vogsphere
 
 Go to the kip git hub folder
