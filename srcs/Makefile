@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/01/30 17:10:14 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/01/31 15:08:38 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ lib:
 $(NAME): lib
 	@$(CC) $(CFLAG) $(INCLUDES) -c $(SOURCES)
 	@$(CC) -o $(NAME) $(OBJECTS) -L $(LIBDIR) $(LIBS) $(FRAMEWORKS)
+	@rm -f $(OBJECTS)
 	@echo "Binary  compiling...	\033[1;32mdone\033[m"
 
 clean:
