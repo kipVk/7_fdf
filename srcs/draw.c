@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/24 16:08:27 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 14:43:09 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,34 @@ void	paint_background(t_fdf *fdf)
 		}
 		i++;
 	}
+}
+
+void	draw_grid(t_fdf *fdf)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < fdf->lines)
+	{
+		j = 0;
+		while (j < fdf->length)
+		{
+			fdf->x0 = fdf->x1 + DISTANCE;
+			fdf->x1 = fdf->x0 + DISTANCE;
+			fdf->y0 = fdf->y1 + DISTANCE;
+			fdf->y1 = fdf->y0 + DISTANCE;
+			//fflush(stdout);
+			j++;
+		}
+		i++;
+		//printf("\n");
+		//fflush(stdout);
+	}
+	//fdf->x0 = ;
+	//fdf->y0 = 100;
+	//fdf->x1 = 100;
+	//fdf->y1 = 200;
+
+	draw_line(fdf);
 }
