@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 18:12:22 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:44:33 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_up(t_fdf *fdf)
 	int	i;
 
 	i = 0;
-	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
+	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, fdf->color);
 	av = 2 * fdf->dx - fdf->dy;
 	inc1 = 2 * (fdf->dx - fdf->dy);
 	inc2 = 2 * fdf->dx;
@@ -40,7 +40,7 @@ void	draw_up(t_fdf *fdf)
 		else
 			av = av + inc2;
 		fdf->y0 = fdf->y0 + fdf->incy;
-		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, fdf->color);
 		i++;
 	}
 }
@@ -169,8 +169,20 @@ void	draw_vgrid(t_fdf *fdf)
 
 void	chose_color(t_fdf *fdf)
 {
-	if (fdf->map[fdf->index_y][fdf->index_x] > 0)
-		fdf->color = PEAK_COLOR;
-	else
-		fdf->color = LINE_COLOR;
+	if (fdf->index_y != fdf->lines - 1)
+	{
+		if (fdf->map[fdf->index_y + 1][fdf->index_x] > 0 \
+			&& fdf->map[fdf->index_y][fdf->index_x] > 0)
+			fdf->color = PEAK_COLOR;
+		else
+			fdf->color = LINE_COLOR;
+	}
+	if (fdf->index_x != fdf->length - 1)
+	{
+		if (fdf->map[fdf->index_y][fdf->index_x + 1] > 0 \
+			&& fdf->map[fdf->index_y][fdf->index_x] > 0)
+			fdf->color = PEAK_COLOR;
+		else
+			fdf->color = LINE_COLOR;
+	}
 }
