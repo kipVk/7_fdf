@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 14:37:29 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:13:38 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct	s_fdf
 # define BG_COLOR 0xFFFFFF
 # define WIN_NAME "FDF"
 # define DISTANCE 15
+# define INIT_X WIN_W/5
+# define INIT_Y WIN_H/5
 
 /*
 ** Draw
