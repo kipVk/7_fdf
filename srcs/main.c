@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 14:37:04 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:12:10 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int		mouse_press(int button, void *param)
 
 void	test_line(t_fdf *fdf)
 {
-	fdf->x0 = 100;
-	fdf->y0 = 100;
-	fdf->x1 = 100;
-	fdf->y1 = 200;
-	fdf->mlx = mlx_init();
-	fdf->win = mlx_new_window(fdf->mlx, WIN_W, WIN_H, "FDF");
+	fdf->x0 = 0;
+	fdf->y0 = 0;
+	fdf->x1 = 15;
+	fdf->y1 = 15;
+	//fdf->mlx = mlx_init();
+	//fdf->win = mlx_new_window(fdf->mlx, WIN_W, WIN_H, "FDF");
 	paint_background(fdf);
 	draw_line(fdf);
 }
@@ -75,6 +75,7 @@ int		main(int ac, char **av)
 		file = open(av[1], O_RDONLY);
 		ini_fdf(fdf);
 		read_file(file, fdf);
+		paint_background(fdf);
 		draw_grid(fdf);
 		//test_line(fdf);
 		//mlx_key_hook(fdf.win, key_press, fdf.mlx);
