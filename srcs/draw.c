@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 17:21:20 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:33:21 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,14 @@ void	paint_background(t_fdf *fdf)
 	}
 }
 
-void	draw_grid(t_fdf *fdf)
+void	draw_hgrid(t_fdf *fdf)
 {
 	int i;
 	int j;
 
 	i = 0;
-	fdf->y0 = fdf->y0 + INIT_Y;
-	fdf->x0 = fdf->x0 + INIT_X;
+	fdf->y0 = INIT_Y;
+	fdf->x0 = INIT_X;
 	fdf->x = fdf->x0;
 	while (i < fdf->lines)
 	{
@@ -140,5 +140,31 @@ void	draw_grid(t_fdf *fdf)
 		}
 		i++;
 		fdf->y0 = fdf->y0 + DISTANCE;
+	}
+}
+
+void	draw_vgrid(t_fdf *fdf)
+{
+	int i;
+	int j;
+
+	i = 0;
+	fdf->y0 = INIT_Y;
+	fdf->x0 = INIT_X;
+	fdf->y = fdf->y0;
+	while (i < fdf->length)
+	{
+		j = 0;
+		fdf->x1 = fdf->x0;
+		fdf->y0 = fdf->y;
+		while (j < fdf->lines)
+		{
+			fdf->y1 = fdf->y0 + DISTANCE;
+			draw_line(fdf);
+			fdf->y0 = fdf->y1;
+			j++;
+		}
+		i++;
+		fdf->x0 = fdf->x0 + DISTANCE;
 	}
 }
