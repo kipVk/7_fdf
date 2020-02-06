@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 17:25:24 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:11:57 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct	s_fdf
 	int			lines;
 	int			length;
 	int			**map;
+	int			color;
+	int			index_x;
+	int			index_y;
 }				t_fdf;
 
 /*
@@ -49,6 +52,7 @@ typedef struct	s_fdf
 # define WIN_W 818
 # define LINE_COLOR 0x000000
 # define BG_COLOR 0xFFFFFF
+# define PEAK_COLOR 0x33cc33
 # define WIN_NAME "FDF"
 # define DISTANCE 15
 # define INIT_X WIN_W/5
@@ -64,6 +68,7 @@ void			draw_up(t_fdf *fdf);
 void			paint_background(t_fdf *fdf);
 void			draw_hgrid(t_fdf *fdf);
 void			draw_vgrid(t_fdf *fdf);
+void			chose_color(t_fdf *fdf);
 
 /*
 ** Test

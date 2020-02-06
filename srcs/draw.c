@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 17:38:36 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:12:22 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	draw_down(t_fdf *fdf)
 	int	i;
 
 	i = 0;
-	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
+	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, fdf->color);
 	av = 2 * fdf->dy - fdf->dx;
 	inc1 = 2 * (fdf->dy - fdf->dx);
 	inc2 = 2 * fdf->dy;
@@ -72,7 +72,7 @@ void	draw_down(t_fdf *fdf)
 		else
 			av = av + inc2;
 		fdf->x0 = fdf->x0 + fdf->incx;
-		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, LINE_COLOR);
+		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, fdf->color);
 		i++;
 	}
 }
@@ -119,54 +119,58 @@ void	paint_background(t_fdf *fdf)
 
 void	draw_hgrid(t_fdf *fdf)
 {
-	int i;
-	int j;
-
-	i = 0;
+	fdf->index_y = 0;
 	fdf->y0 = INIT_Y;
 	fdf->x0 = INIT_X;
 	fdf->x = fdf->x0;
-	while (i < fdf->lines)
+	while (fdf->index_y < fdf->lines)
 	{
-		j = 0;
+		fdf->index_x = 0;
 		fdf->y1 = fdf->y0;
 		fdf->x0 = fdf->x;
-		while (j < fdf->length)
+		while (fdf->index_x < fdf->length)
 		{
-			if (j != fdf->length - 1)
+			chose_color(fdf);
+			if (fdf->index_x != fdf->length - 1)
 				fdf->x1 = fdf->x0 + DISTANCE;
 			draw_line(fdf);
 			fdf->x0 = fdf->x1;
-			j++;
+			fdf->index_x++;
 		}
-		i++;
+		fdf->index_y++;
 		fdf->y0 = fdf->y0 + DISTANCE;
 	}
 }
 
 void	draw_vgrid(t_fdf *fdf)
 {
-	int i;
-	int j;
-
-	i = 0;
+	fdf->index_x = 0;
 	fdf->y0 = INIT_Y;
 	fdf->x0 = INIT_X;
 	fdf->y = fdf->y0;
-	while (i < fdf->length)
+	while (fdf->index_x < fdf->length)
 	{
-		j = 0;
+		fdf->index_y = 0;
 		fdf->x1 = fdf->x0;
 		fdf->y0 = fdf->y;
-		while (j < fdf->lines)
+		while (fdf->index_y < fdf->lines)
 		{
-			if (j != fdf->lines - 1)
+			chose_color(fdf);
+			if (fdf->index_y != fdf->lines - 1)
 				fdf->y1 = fdf->y0 + DISTANCE;
 			draw_line(fdf);
 			fdf->y0 = fdf->y1;
-			j++;
+			fdf->index_y++;
 		}
-		i++;
+		fdf->index_x++;
 		fdf->x0 = fdf->x0 + DISTANCE;
 	}
+}
+
+void	chose_color(t_fdf *fdf)
+{
+	if (fdf->map[fdf->index_y][fdf->index_x] > 0)
+		fdf->color = PEAK_COLOR;
+	else
+		fdf->color = LINE_COLOR;
 }
