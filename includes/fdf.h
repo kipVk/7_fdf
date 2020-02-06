@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/30 17:08:32 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 11:02:34 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_fdf
 	int			incx;
 	int			incy;
 	int			lines;
+	int			length;
 	int			**map;
 }				t_fdf;
 

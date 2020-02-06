@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/30 17:11:03 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 11:30:01 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->dy = 0;
 	fdf->incx = 0;
 	fdf->incy = 0;
+	fdf->length = 0;
 }
 
 int		main(int ac, char **av)
