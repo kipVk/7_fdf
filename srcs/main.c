@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 11:30:01 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 14:37:04 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		main(int ac, char **av)
 		file = open(av[1], O_RDONLY);
 		ini_fdf(fdf);
 		read_file(file, fdf);
+		draw_grid(fdf);
 		//test_line(fdf);
 		//mlx_key_hook(fdf.win, key_press, fdf.mlx);
 		mlx_hook(fdf->win, 2, 0, key_press, fdf->mlx);

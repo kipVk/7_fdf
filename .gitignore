@@ -9,3 +9,7 @@ _DS_Store
 *.a
 
 fdf
+
+a.out
+
+*.dSYM

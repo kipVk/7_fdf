@@ -395,6 +395,11 @@ I made the function:
 	}
 
 That splits the line by the spaces, and saves on the 2D array fdf->map the values of it, already on int format.
+
+I had a problem with my makefile to compile the debug file, so I used this command to compile. This generates the .dSYM file that is used by Visual Studio Code to debug:
+
+	gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -lmlx -framework OpenGL -framework AppKit -I ../includes -I ../libft/includes
+
  # Clone this repo to vogsphere
 
 Go to the kip git hub folder

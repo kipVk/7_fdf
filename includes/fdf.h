@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 11:02:34 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 14:37:29 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_fdf
 # define LINE_COLOR 0x000000
 # define BG_COLOR 0xFFFFFF
 # define WIN_NAME "FDF"
+# define DISTANCE 15
 
 /*
 ** Draw
@@ -59,6 +60,7 @@ void			draw_line(t_fdf *fdf);
 void			draw_down(t_fdf *fdf);
 void			draw_up(t_fdf *fdf);
 void			paint_background(t_fdf *fdf);
+void			draw_grid(t_fdf *fdf);
 
 /*
 ** Test
