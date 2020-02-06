@@ -400,6 +400,74 @@ I had a problem with my makefile to compile the debug file, so I used this comma
 
 	gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -lmlx -framework OpenGL -framework AppKit -I ../includes -I ../libft/includes
 
+I made the function:
+
+	void	draw_hgrid(t_fdf *fdf)
+	{
+		int i;
+		int j;
+
+		i = 0;
+		fdf->y0 = INIT_Y;
+		fdf->x0 = INIT_X;
+		fdf->x = fdf->x0;
+		while (i < fdf->lines)
+		{
+			j = 0;
+			fdf->y1 = fdf->y0;
+			fdf->x0 = fdf->x;
+			while (j < fdf->length)
+			{
+				if (j != fdf->length - 1)
+					fdf->x1 = fdf->x0 + DISTANCE;
+				draw_line(fdf);
+				fdf->x0 = fdf->x1;
+				j++;
+			}
+			i++;
+			fdf->y0 = fdf->y0 + DISTANCE;
+		}
+	}
+
+That draws horizontal lines on the grid:
+
+![Horizontal lines](https://github.com/kipVk/7_fdf/blob/master/resources/hor_lines.png)
+
+And the function:
+
+	void	draw_vgrid(t_fdf *fdf)
+	{
+		int i;
+		int j;
+
+		i = 0;
+		fdf->y0 = INIT_Y;
+		fdf->x0 = INIT_X;
+		fdf->y = fdf->y0;
+		while (i < fdf->length)
+		{
+			j = 0;
+			fdf->x1 = fdf->x0;
+			fdf->y0 = fdf->y;
+			while (j < fdf->lines)
+			{
+				if (j != fdf->lines - 1)
+					fdf->y1 = fdf->y0 + DISTANCE;
+				draw_line(fdf);
+				fdf->y0 = fdf->y1;
+				j++;
+			}
+			i++;
+			fdf->x0 = fdf->x0 + DISTANCE;
+		}
+	}
+
+For the vertical lines so we have a grid:
+
+![Grid](https://github.com/kipVk/7_fdf/blob/master/resources/grid.png)
+
+
+
  # Clone this repo to vogsphere
 
 Go to the kip git hub folder

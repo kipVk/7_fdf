@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 17:33:21 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:38:36 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,8 @@ void	draw_hgrid(t_fdf *fdf)
 		fdf->x0 = fdf->x;
 		while (j < fdf->length)
 		{
-			fdf->x1 = fdf->x0 + DISTANCE;
+			if (j != fdf->length - 1)
+				fdf->x1 = fdf->x0 + DISTANCE;
 			draw_line(fdf);
 			fdf->x0 = fdf->x1;
 			j++;
@@ -159,7 +160,8 @@ void	draw_vgrid(t_fdf *fdf)
 		fdf->y0 = fdf->y;
 		while (j < fdf->lines)
 		{
-			fdf->y1 = fdf->y0 + DISTANCE;
+			if (j != fdf->lines - 1)
+				fdf->y1 = fdf->y0 + DISTANCE;
 			draw_line(fdf);
 			fdf->y0 = fdf->y1;
 			j++;
