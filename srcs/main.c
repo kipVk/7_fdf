@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/07 20:59:52 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/07 21:05:37 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,20 @@ int		main(int ac, char **av)
 	int		file;
 
 	if (ac != 2)
-		ft_putendl("usage ./fd [file]");
+		ft_putendl("usage ./fd [map_file]");
 	else
 	{
 		if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 			ft_puterr("ERROR: Memory Allocation error for fdf.", 1);
 		file = open(av[1], O_RDONLY);
+		if (file <0)
+			ft_puterr("ERROR: File not valid.", 1);
 		fdf->lines = ft_file_line_count(file);
 		close(file);
 		file = open(av[1], O_RDONLY);
 		ini_fdf(fdf);
 		read_file(file, fdf);
 		redraw(fdf);
-		//mlx_key_hook(fdf.win, key_press, fdf.mlx);
 		mlx_hook(fdf->win, 2, 0, key_press, fdf);
 		mlx_hook(fdf->win, 4, 0, mouse_press, fdf->mlx);
 		mlx_loop(fdf->mlx);
