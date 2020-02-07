@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:35:06 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 12:10:45 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/07 20:16:28 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void	read_file(int fd, t_fdf *fdf)
 		free(line);
 		i++;
 	}
-	print_file(fdf);
+	//print_file(fdf);
 }

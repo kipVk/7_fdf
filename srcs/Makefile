@@ -6,9 +6,12 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/02/06 14:46:45 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/02/07 17:33:50 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#@$(CC) $(CFLAG) $(INCLUDES) -c $(SOURCES)
+#@$(CC) -o $(NAME) $(OBJECTS) -L $(LIBDIR) $(LIBS) $(FRAMEWORKS)
 
 NAME = fdf
 CC = gcc
@@ -34,8 +37,7 @@ lib:
 	@echo "Library compiling...	\033[1;32mdone\033[m"
 
 $(NAME): lib
-	@$(CC) $(CFLAG) $(INCLUDES) -c $(SOURCES)
-	@$(CC) -o $(NAME) $(OBJECTS) -L $(LIBDIR) $(LIBS) $(FRAMEWORKS)
+	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -lmlx -framework OpenGL -framework AppKit -I ../includes -I ../libft/includes
 	@rm -f $(OBJECTS)
 	@echo "Binary  compiling...	\033[1;32mdone\033[m"
 
