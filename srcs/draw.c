@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/07 20:38:58 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/07 20:48:22 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,37 +167,6 @@ void	draw_vgrid(t_fdf *fdf)
 	}
 }
 
-/* void	chose_color(t_fdf *fdf)
-{
-	if (fdf->index_y != fdf->lines - 1)
-	{
-		if (fdf->map[fdf->index_y + 1][fdf->index_x] != 0 \
-			&& fdf->map[fdf->index_y][fdf->index_x] != 0)
-		{
-			fdf->color = PEAK_COLOR;
-
-		else
-		{
-			fdf->color = LINE_COLOR;
-			return;
-		}
-	}
-	if (fdf->index_x != fdf->length - 1)
-	{
-		if (fdf->map[fdf->index_y][fdf->index_x + 1] != 0 \
-			&& fdf->map[fdf->index_y][fdf->index_x] != 0)
-		{
-			fdf->color = PEAK_COLOR;
-			return;
-		}
-		else
-		{
-			fdf->color = LINE_COLOR;
-			return;
-		}
-	}
-}  */
-
 void	chose_color(t_fdf *fdf)
 {
 	if (fdf->y0 == fdf->y1)
@@ -222,11 +191,4 @@ void	chose_color(t_fdf *fdf)
 				fdf->color = LINE_COLOR;
 		}
 	}
-}
-
-void	redraw(t_fdf *fdf)
-{
-	paint_background(fdf);
-	draw_hgrid(fdf);
-	draw_vgrid(fdf);
 }
