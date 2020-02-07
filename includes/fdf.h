@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/07 20:38:42 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/07 20:51:46 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ typedef struct	s_fdf
 
 # define WIN_H 500
 # define WIN_W 818
-# define LINE_COLOR 0x000000
-# define BG_COLOR 0xFFFFFF
-# define PEAK_COLOR 0x33cc33
+# define LINE_COLOR 0xd9d9d9
+# define BG_COLOR 0x404040
+# define PEAK_COLOR 0x4da6ff
 # define WIN_NAME "FDF"
 # define DISTANCE 25
 # define INIT_X WIN_W/5
@@ -78,18 +78,17 @@ void			paint_background(t_fdf *fdf);
 void			draw_hgrid(t_fdf *fdf);
 void			draw_vgrid(t_fdf *fdf);
 void			chose_color(t_fdf *fdf);
-void			redraw(t_fdf *fdf);
 
 /*
-** Test
+** Main
 */
 
-void			test_line(t_fdf *fdf);
+void			redraw(t_fdf *fdf);
 
 /*
 ** Read
 */
 
-void	read_file(int fd, t_fdf *fdf);
+void			read_file(int fd, t_fdf *fdf);
 
 #endif

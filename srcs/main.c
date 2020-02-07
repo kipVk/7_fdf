@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/07 20:39:39 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/07 20:59:52 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int		key_press(int key, t_fdf *fdf)
 		fdf->count_side += SIDE_VALUE;
 	if (key == LEFT_A)
 		fdf->count_side -= SIDE_VALUE;
-	redraw(fdf);	
-	//ft_putnbr(key);
+	redraw(fdf);
 	return (0);
 }
 
@@ -36,18 +35,6 @@ int		mouse_press(int button, void *param)
 	if (button == 1)
 		ft_putchar('1');
 	return (0);
-}
-
-void	test_line(t_fdf *fdf)
-{
-	fdf->x0 = 0;
-	fdf->y0 = 0;
-	fdf->x1 = 15;
-	fdf->y1 = 15;
-	//fdf->mlx = mlx_init();
-	//fdf->win = mlx_new_window(fdf->mlx, WIN_W, WIN_H, "FDF");
-	paint_background(fdf);
-	draw_line(fdf);
 }
 
 void	ini_fdf(t_fdf *fdf)
@@ -68,6 +55,22 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->count_up = 0;
 }
 
+void	write_legend(t_fdf *fdf)
+{
+	mlx_string_put (fdf->mlx, fdf->win, 10, 10, PEAK_COLOR, " ^");
+	mlx_string_put (fdf->mlx, fdf->win, 10, 15, PEAK_COLOR, "< > Move");
+	mlx_string_put (fdf->mlx, fdf->win, 10, 20, PEAK_COLOR, " v");
+	mlx_string_put (fdf->mlx, fdf->win, 10, 40, PEAK_COLOR, "ESC Close");
+}
+
+void	redraw(t_fdf *fdf)
+{
+	paint_background(fdf);
+	draw_hgrid(fdf);
+	draw_vgrid(fdf);
+	write_legend(fdf);
+}
+
 int		main(int ac, char **av)
 {
 	t_fdf	*fdf;
@@ -86,7 +89,6 @@ int		main(int ac, char **av)
 		ini_fdf(fdf);
 		read_file(file, fdf);
 		redraw(fdf);
-		//test_line(fdf);
 		//mlx_key_hook(fdf.win, key_press, fdf.mlx);
 		mlx_hook(fdf->win, 2, 0, key_press, fdf);
 		mlx_hook(fdf->win, 4, 0, mouse_press, fdf->mlx);
