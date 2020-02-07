@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 18:44:33 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/07 20:38:58 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ void	paint_background(t_fdf *fdf)
 void	draw_hgrid(t_fdf *fdf)
 {
 	fdf->index_y = 0;
-	fdf->y0 = INIT_Y;
-	fdf->x0 = INIT_X;
+	fdf->y0 = INIT_Y + fdf->count_up;
+	fdf->x0 = INIT_X + fdf->count_side;
 	fdf->x = fdf->x0;
 	while (fdf->index_y < fdf->lines)
 	{
@@ -145,8 +145,8 @@ void	draw_hgrid(t_fdf *fdf)
 void	draw_vgrid(t_fdf *fdf)
 {
 	fdf->index_x = 0;
-	fdf->y0 = INIT_Y;
-	fdf->x0 = INIT_X;
+	fdf->y0 = INIT_Y + fdf->count_up;
+	fdf->x0 = INIT_X + fdf->count_side;
 	fdf->y = fdf->y0;
 	while (fdf->index_x < fdf->length)
 	{
@@ -167,22 +167,66 @@ void	draw_vgrid(t_fdf *fdf)
 	}
 }
 
-void	chose_color(t_fdf *fdf)
+/* void	chose_color(t_fdf *fdf)
 {
 	if (fdf->index_y != fdf->lines - 1)
 	{
-		if (fdf->map[fdf->index_y + 1][fdf->index_x] > 0 \
-			&& fdf->map[fdf->index_y][fdf->index_x] > 0)
+		if (fdf->map[fdf->index_y + 1][fdf->index_x] != 0 \
+			&& fdf->map[fdf->index_y][fdf->index_x] != 0)
+		{
 			fdf->color = PEAK_COLOR;
+
 		else
+		{
 			fdf->color = LINE_COLOR;
+			return;
+		}
 	}
 	if (fdf->index_x != fdf->length - 1)
 	{
-		if (fdf->map[fdf->index_y][fdf->index_x + 1] > 0 \
-			&& fdf->map[fdf->index_y][fdf->index_x] > 0)
+		if (fdf->map[fdf->index_y][fdf->index_x + 1] != 0 \
+			&& fdf->map[fdf->index_y][fdf->index_x] != 0)
+		{
 			fdf->color = PEAK_COLOR;
+			return;
+		}
 		else
+		{
 			fdf->color = LINE_COLOR;
+			return;
+		}
 	}
+}  */
+
+void	chose_color(t_fdf *fdf)
+{
+	if (fdf->y0 == fdf->y1)
+	{
+		if (fdf->index_x != fdf->length - 1)
+		{
+			if (fdf->map[fdf->index_y][fdf->index_x] != 0 && 
+				fdf->map[fdf->index_y][fdf->index_x + 1] != 0)
+				fdf->color = PEAK_COLOR;
+			else
+				fdf->color = LINE_COLOR;
+		}
+	}
+	else if (fdf->x0 == fdf->x1)
+	{
+		if (fdf->index_y != fdf->lines - 1)
+		{
+			if (fdf->map[fdf->index_y][fdf->index_x] != 0 && 
+				fdf->map[fdf->index_y + 1][fdf->index_x] != 0)
+				fdf->color = PEAK_COLOR;
+			else
+				fdf->color = LINE_COLOR;
+		}
+	}
+}
+
+void	redraw(t_fdf *fdf)
+{
+	paint_background(fdf);
+	draw_hgrid(fdf);
+	draw_vgrid(fdf);
 }

@@ -5,6 +5,7 @@ Project fdf done at Hive Helsinki
         
         - Remove -g from Makefile
         - Remove <stdio.h> from fdf.h
+		- Remove the long comp from Makefile
 
 # 1 - Beginning. Initial testing and project setup.
 Started this project by trying to make the minilibx work by creating a simple window, and drawing 2 pixels.

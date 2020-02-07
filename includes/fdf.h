@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/06 18:11:57 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/07 20:38:42 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct	s_fdf
 	int			color;
 	int			index_x;
 	int			index_y;
+	int			count_up;
+	int			count_side;
 }				t_fdf;
 
 /*
@@ -54,9 +56,16 @@ typedef struct	s_fdf
 # define BG_COLOR 0xFFFFFF
 # define PEAK_COLOR 0x33cc33
 # define WIN_NAME "FDF"
-# define DISTANCE 15
+# define DISTANCE 25
 # define INIT_X WIN_W/5
 # define INIT_Y WIN_H/5
+# define ESC_K 53
+# define RIGHT_A 124
+# define LEFT_A 123
+# define UP_A 126
+# define DOWN_A 125
+# define UP_VALUE 4
+# define SIDE_VALUE 4
 
 /*
 ** Draw
@@ -69,6 +78,7 @@ void			paint_background(t_fdf *fdf);
 void			draw_hgrid(t_fdf *fdf);
 void			draw_vgrid(t_fdf *fdf);
 void			chose_color(t_fdf *fdf);
+void			redraw(t_fdf *fdf);
 
 /*
 ** Test
