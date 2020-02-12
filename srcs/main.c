@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/07 21:05:37 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/12 21:32:38 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int		key_press(int key, t_fdf *fdf)
 		fdf->count_side += SIDE_VALUE;
 	if (key == LEFT_A)
 		fdf->count_side -= SIDE_VALUE;
+	if (key == ZOOM_I)
+		fdf->zoom += 2;
+	if (key == ZOOM_O)
+		fdf->zoom -= 2;
+	if (key == 49)
+		fdf->angle_y *= (fdf->iso++ % 2) ? 0.2 : 5;
+	//ft_putnbr(key);
 	redraw(fdf);
 	return (0);
 }
@@ -53,6 +60,14 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->incy = 0;
 	fdf->length = 0;
 	fdf->count_up = 0;
+	fdf->distance = DISTANCE;
+	fdf->angle_y = 0.3;//cos(M_PI / 3);
+	fdf->angle_x = 0.3;//fdf->angle_y * sin(M_PI / 6);
+	fdf->x_value = 1.00;
+	fdf->zoom = ceil((fdf->length > fdf->lines)) \
+		? (WIN_W / fdf->length) + 2 \
+		: (WIN_H / fdf->lines) + 2;
+	fdf->iso = 1;
 }
 
 void	write_legend(t_fdf *fdf)
@@ -61,13 +76,15 @@ void	write_legend(t_fdf *fdf)
 	mlx_string_put (fdf->mlx, fdf->win, 10, 15, PEAK_COLOR, "< > Move");
 	mlx_string_put (fdf->mlx, fdf->win, 10, 20, PEAK_COLOR, " v");
 	mlx_string_put (fdf->mlx, fdf->win, 10, 40, PEAK_COLOR, "ESC Close");
+	mlx_string_put (fdf->mlx, fdf->win, 10, 60, PEAK_COLOR, "+ - Zoom");
 }
 
 void	redraw(t_fdf *fdf)
 {
-	paint_background(fdf);
-	draw_hgrid(fdf);
-	draw_vgrid(fdf);
+	//paint_background(fdf);
+	draw_thing(fdf);
+	//draw_hgrid(fdf);
+	//draw_vgrid(fdf);
 	write_legend(fdf);
 }
 
