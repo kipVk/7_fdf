@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/12 21:05:07 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/12 21:54:35 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,10 @@ void			draw_line(t_fdf *fdf);
 void			draw_down(t_fdf *fdf);
 void			draw_up(t_fdf *fdf);
 void			paint_background(t_fdf *fdf);
-void			draw_hgrid(t_fdf *fdf, int y, int z);
-void			draw_vgrid(t_fdf *fdf, int y, int z);
+void			draw_hgrid(t_fdf *fdf);
+void			draw_vgrid(t_fdf *fdf);
 void			chose_color(t_fdf *fdf);
-void			draw_thing(t_fdf *fdf);
-void		put_pixel(t_fdf *fdf, int y, int z, double uvector);
+
 
 /*
 ** Main
