@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/12 21:58:11 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/13 22:17:45 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,27 @@ void	ini_fdf(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WIN_W, WIN_H, WIN_NAME);
-	fdf->x0 = 0;
-	fdf->x1 = 0;
-	fdf->y0 = 0;
-	fdf->y1 = 0;
-	fdf->x = 0;
-	fdf->y = 0;
-	fdf->dx = 0;
-	fdf->dy = 0;
-	fdf->incx = 0;
-	fdf->incy = 0;
-	fdf->length = 0;
-	fdf->count_up = 0;
+	//fdf->x0 = 0;
+	//fdf->x1 = 0;
+	//fdf->y0 = 0;
+	//fdf->y1 = 0;
+	//fdf->x = 0;
+	//fdf->y = 0;
+	//fdf->dx = 0;
+	//fdf->dy = 0;
+	//fdf->incx = 0;
+	//fdf->incy = 0;
+	//fdf->length = 0;
+	//fdf->count_up = 0;
+	//fdf->count_side = 0;
 	fdf->distance = DISTANCE;
-	fdf->angle_y = 0.5;//cos(M_PI / 3);
-	fdf->angle_x = 0.5;//fdf->angle_y * sin(M_PI / 6);
-	fdf->x_value = 1.00;
-	fdf->zoom = ceil((fdf->length > fdf->lines)) \
-		? (WIN_W / fdf->length) + 2 \
-		: (WIN_H / fdf->lines) + 2;
-	fdf->iso = 1;
+	//fdf->angle_y = cos(M_PI / 3);
+	//fdf->angle_x = fdf->angle_y * sin(M_PI / 6);
+	//fdf->x_value = 1.00;
+	//fdf->zoom = ceil((fdf->length > fdf->lines)) \
+	//	? (WIN_W / fdf->length) + 2 \
+	//	: (WIN_H / fdf->lines) + 2;
+	//fdf->iso = 1;
 }
 
 void	write_legend(t_fdf *fdf)
@@ -83,8 +84,8 @@ void	redraw(t_fdf *fdf)
 {
 	paint_background(fdf);
 	//draw_thing(fdf);
-	draw_hgrid(fdf);
-	draw_vgrid(fdf);
+	draw_h(fdf);
+	draw_v(fdf);
 	write_legend(fdf);
 }
 

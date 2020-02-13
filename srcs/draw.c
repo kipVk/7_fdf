@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/12 21:59:45 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/13 22:19:51 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,60 @@ void	chose_color(t_fdf *fdf)
 			else
 				fdf->color = LINE_COLOR;
 		}
+	}
+}
+
+int		flash_x(t_fdf *fdf)
+{
+
+	return(INIT_X - (fdf->distance * fdf->index_y) + (fdf->distance * fdf->index_x));
+}
+
+int		flash_y(t_fdf *fdf)
+{
+	if (fdf->map[fdf->index_y][fdf->index_x] > 30000)
+		fdf->map[fdf->index_y][fdf->index_x] = 30000;
+	if (fdf->map[fdf->index_y][fdf->index_x] < -30000)
+		fdf->map[fdf->index_y][fdf->index_x] = -30000;
+	return(INIT_Y + (fdf->distance * fdf->index_x) + (fdf->distance * fdf->index_y) - (fdf->map[fdf->index_y][fdf->index_x] * 2));
+}
+
+void	draw_h(t_fdf *fdf)
+{
+	fdf->index_y = 0;
+	while (fdf->index_y < fdf->lines)
+	{
+		fdf->index_x = 0;
+		if (fdf->index_x < fdf->length - 1)
+		{
+			fdf->x0 = flash_x(fdf);
+			fdf->y0 = flash_y(fdf);
+			fdf->index_x++;
+			fdf->x1 = flash_x(fdf);
+			fdf->y1 = flash_y(fdf);
+			draw_line(fdf);
+		}
+		fdf->index_y++;
+	}
+}
+
+void	draw_v(t_fdf *fdf)
+{
+	fdf->index_y = 0;
+	while (fdf->index_y < fdf->lines - 1)
+	{
+		fdf->index_x = 0;
+		if (fdf->index_x < fdf->length && (fdf->length - fdf->index_x > 0))
+		{
+			fdf->x0 = flash_x(fdf);
+			fdf->y0 = flash_y(fdf);
+			fdf->index_y++;
+			fdf->x1 = flash_x(fdf);
+			fdf->y1 = flash_y(fdf);
+			fdf->index_y--;
+			draw_line(fdf);
+			fdf->index_x++;
+		}
+		fdf->index_y++;
 	}
 }
