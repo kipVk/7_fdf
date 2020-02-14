@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/02/07 17:33:50 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/02/14 13:17:18 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ lib:
 	@echo "Library compiling...	\033[1;32mdone\033[m"
 
 $(NAME): lib
-	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit -I ../includes -I ../libft/includes -I /usr/X11/include
+	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -lmlx -framework OpenGL -framework AppKit -I ../includes -I ../libft/includes
 	@rm -f $(OBJECTS)
 	@echo "Binary  compiling...	\033[1;32mdone\033[m"
 
@@ -54,4 +54,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all lib clean fclean re
+laptop: fclean lib
+	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit -I ../includes -I ../libft/includes -I /usr/X11/include
+	@rm -f $(OBJECTS)
+	@echo "Binary  compiling...	\033[1;32mdone\033[m"
+
+.PHONY: all lib clean fclean re laptop

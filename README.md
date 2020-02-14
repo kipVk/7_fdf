@@ -174,6 +174,58 @@ Now my Makefile has this compilation line that worked on my laptop.
 	$(NAME): lib
 	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit -I ../includes -I ../libft/includes -I /usr/X11/include
 
+To make a Makefile that works on laptop and on the school computer I made this:
+
+	NAME = fdf
+	CC = gcc
+	CFLAG = -Wall -Wextra -Werror -g
+	SRCDIR = 
+	INCDIR = ../includes
+	LIBDIR = ../libft
+	LIBINC = $(LIBDIR)/includes
+	LIBS = -lft -lmlx
+	INCLUDES = -I $(INCDIR) -I $(LIBINC)
+	FRAMEWORKS = -framework OpenGL -framework AppKit
+	SRC = main.c \
+		draw.c \
+		read.c
+
+	SOURCES = $(addprefix $(SRCDIR), $(SRC))
+	OBJECTS = $(notdir $(SOURCES:.c=.o))
+
+	all: lib $(NAME)
+
+	lib:
+		@make -C $(LIBDIR)
+		@echo "Library compiling...	\033[1;32mdone\033[m"
+
+	$(NAME): lib
+		@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -lmlx -framework OpenGL -framework AppKit -I ../includes -I ../libft/includes
+		@rm -f $(OBJECTS)
+		@echo "Binary  compiling...	\033[1;32mdone\033[m"
+
+	clean:
+		@rm -f $(OBJECTS)
+		@echo "Objects  cleaning...	\033[1;32mdone\033[m"
+		@make -C $(LIBDIR) clean
+		@echo "Library  cleaning...	\033[1;32mdone\033[m"
+
+	fclean: clean
+		@rm -f $(NAME)
+		@make -C $(LIBDIR) fclean
+		@echo "Complete cleaning...	\033[1;32mdone\033[m"
+
+	re: fclean all
+
+	laptop: fclean lib
+		@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit -I ../includes -I ../libft/includes -I /usr/X11/include
+		@rm -f $(OBJECTS)
+		@echo "Binary  compiling...	\033[1;32mdone\033[m"
+
+	.PHONY: all lib clean fclean re laptop
+
+
+
 # 2 - Architecture plan
 
 TODO:
