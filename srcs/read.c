@@ -6,11 +6,10 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:35:06 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/07 20:44:54 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:03:03 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "fdf.h"
 
 /*

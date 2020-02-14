@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/13 22:18:20 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:09:15 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,6 @@ typedef struct	s_fdf
 ** Draw
 */
 
-void			draw_line(t_fdf *fdf);
-void			draw_down(t_fdf *fdf);
-void			draw_up(t_fdf *fdf);
 void			paint_background(t_fdf *fdf);
 void			draw_hgrid(t_fdf *fdf);
 void			draw_vgrid(t_fdf *fdf);
@@ -100,6 +97,13 @@ void			chose_color(t_fdf *fdf);
 void			draw_h(t_fdf *fdf);
 void			draw_v(t_fdf *fdf);
 
+/*
+** Bresenham
+*/
+
+void			draw_line(t_fdf *fdf);
+void			draw_down(t_fdf *fdf);
+void			draw_up(t_fdf *fdf);
 
 /*
 ** Main
