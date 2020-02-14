@@ -37,7 +37,7 @@ lib:
 	@echo "Library compiling...	\033[1;32mdone\033[m"
 
 $(NAME): lib
-	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -lmlx -framework OpenGL -framework AppKit -I ../includes -I ../libft/includes
+	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit -I ../includes -I ../libft/includes -I /usr/X11/include
 	@rm -f $(OBJECTS)
 	@echo "Binary  compiling...	\033[1;32mdone\033[m"
 
