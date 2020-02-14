@@ -141,6 +141,39 @@ The -g flag is for debugging on VsCode.
 
 At this stage, the project is up and running to start testing how to draw points.
 
+In the end I wanted to install the library on my laptop. The steps I took were the following:
+
+1. Download the library from 
+
+	https://projects.intra.42.fr/uploads/document/document/1172/sources.tgz
+
+2. Unpack the tgz file.
+
+3. Download XQuartz and install it.
+
+	https://kb.rice.edu/74034
+	
+4.
+	cd minilibx
+	make
+	cd test
+	./mlx-test
+
+5. After the test is done and I check it is working, I move the compilation to the right folders.
+
+	sudo cp mlx.h /usr/X11/include
+	sudo cp libmlx.a /usr/X11/lib
+	sudo cp libmlx_intel-mac.a /usr/X11/lib
+
+6. Add this to the Makefile
+
+	-I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext
+
+Now my Makefile has this compilation line that worked on my laptop.
+
+	$(NAME): lib
+	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit -I ../includes -I ../libft/includes -I /usr/X11/include
+
 # 2 - Architecture plan
 
 TODO:
