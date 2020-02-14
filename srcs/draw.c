@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/13 22:41:06 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/13 22:51:03 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,10 +201,10 @@ int		flash_x(t_fdf *fdf)
 
 int		flash_y(t_fdf *fdf)
 {
-	if (fdf->map[fdf->index_y][fdf->index_x] > 30000)
-		fdf->map[fdf->index_y][fdf->index_x] = 30000;
-	if (fdf->map[fdf->index_y][fdf->index_x] < -30000)
-		fdf->map[fdf->index_y][fdf->index_x] = -30000;
+	//if (fdf->map[fdf->index_y][fdf->index_x] > 30000)
+		//fdf->map[fdf->index_y][fdf->index_x] = 30000;
+	//if (fdf->map[fdf->index_y][fdf->index_x] < -30000)
+		//fdf->map[fdf->index_y][fdf->index_x] = -30000;
 	return(INIT_Y + (fdf->distance * fdf->index_x) + (fdf->distance * fdf->index_y) - (fdf->map[fdf->index_y][fdf->index_x] * 2));
 }
 
@@ -230,10 +230,10 @@ void	draw_h(t_fdf *fdf)
 void	draw_v(t_fdf *fdf)
 {
 	fdf->index_y = 0;
-	while (fdf->index_y < fdf->lines - 1)
+	while (fdf->index_y < (fdf->lines - 1))
 	{
 		fdf->index_x = 0;
-		if (fdf->index_x < fdf->length && (fdf->length - fdf->index_x > 0))
+		if (fdf->index_x < fdf->length)
 		{
 			fdf->x0 = flash_x(fdf);
 			fdf->y0 = flash_y(fdf);
