@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/14 14:18:45 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:20:45 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	write_legend(t_fdf *fdf)
 void	redraw(t_fdf *fdf)
 {
 	mlx_clear_window(fdf->mlx, fdf->win);
-	//paint_background(fdf);
 	//draw_thing(fdf);
 	draw_hgrid(fdf);
 	draw_vgrid(fdf);

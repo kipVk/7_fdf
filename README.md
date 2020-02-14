@@ -321,6 +321,7 @@ Now it looks like this:
 
 It compiles the library from the libft folder, and then compiles the program with the system minilibX library.
 
+
 # 3 - Tests
 
 Managed to make some line drawings on the screen. Made the finnish flag, and the brittish flag, to see how I can pain with different colors and inclinations. I can also paint the background in any color I want.
@@ -552,8 +553,23 @@ For the vertical lines so we have a grid:
 
 ![Grid](https://github.com/kipVk/7_fdf/blob/master/resources/grid.png)
 
+Once we are able to paint lines in any direction with the bresenham ecuations, we need to calculate the orthogrphic projections of each of the vertex.
+For that, I found this document quite useful:
 
+	https://en.wikipedia.org/wiki/3D_projection
 
+Basically, defining the vector (dx, dy, dz) as the position of the point respect to a coordinate system defined by the camera, where cx, cy, cz is the 3d position of a point C representing the camera (where the viewer is, so screen_w/2 screen_h/2 if we set it in the center of the screen), where sx, sy, sz are scales:
+
+	dx = (cy * ((sz * y) + (cz * x))) - (sy * z)
+	dy = (sx * ((cy * z) + (sy * ((sz * y) + (cz * x))))) + (cx * ((cz * y) - (sz * x)))
+	dz = (cx * ((cy * z) + (sy * ((sz * y) + (cz * x))))) - (sx * ((cz * y) - (sz * x)))
+
+If we consider rx, ry as the recording surface, sx and sy as the display size, and rz the distance from the recording surface to the camera, and dz is the distance from the 3d point to the camera, it can be expressed as:
+
+	bx = (dx * sx) / (dz * rx) * rz
+	by = (dy * sy) / (dz * ry) * rz
+
+So, with these formulas in mind, let's see if i can actually transform these data into my own program's data.
  # Clone this repo to vogsphere
 
 Go to the kip git hub folder
