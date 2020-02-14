@@ -6,11 +6,10 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/13 22:51:31 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:18:45 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "fdf.h"
 
 int		key_press(int key, t_fdf *fdf)
@@ -82,10 +81,11 @@ void	write_legend(t_fdf *fdf)
 
 void	redraw(t_fdf *fdf)
 {
-	paint_background(fdf);
+	mlx_clear_window(fdf->mlx, fdf->win);
+	//paint_background(fdf);
 	//draw_thing(fdf);
-	draw_h(fdf);
-	draw_v(fdf);
+	draw_hgrid(fdf);
+	draw_vgrid(fdf);
 	write_legend(fdf);
 }
 
