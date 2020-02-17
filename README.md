@@ -570,7 +570,8 @@ If we consider rx, ry as the recording surface, sx and sy as the display size, a
 	by = (dy * sy) / (dz * ry) * rz
 
 So, with these formulas in mind, let's see if i can actually transform these data into my own program's data.
- # Clone this repo to vogsphere
+
+# Clone this repo to vogsphere
 
 Go to the kip git hub folder
         
@@ -578,13 +579,6 @@ Go to the kip git hub folder
         git push -f origin2 master
 
 With this, the vogsphere will have exactly the same branches, commits and pushes as the kvk repository
-  
-   
-  
-  
-  
-  
-  
   
   
 # References
