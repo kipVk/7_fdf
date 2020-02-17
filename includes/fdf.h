@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/14 14:21:37 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:35:00 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,23 @@ typedef struct	s_fdf
 	int			zoom;
 	int			iso;
 	t_image		image;
+	int			new_x0;
+	int			new_y0;
+	int			new_x1;
+	int			new_y1;
+	int			*map_val;
+	int			scalx;
+	int			scaly;
+	int			startx;
+	int			starty;
 }				t_fdf;
 
 /*
 ** Macros
 */
 
-# define WIN_H 500
-# define WIN_W 818
+# define WIN_H 1080
+# define WIN_W 1920
 # define LINE_COLOR 0xd9d9d9
 # define BG_COLOR 0x404040
 # define PEAK_COLOR 0x4da6ff

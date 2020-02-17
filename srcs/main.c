@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/14 14:20:45 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:39:37 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->count_up = 0;
 	fdf->count_side = 0;
 	fdf->distance = DISTANCE;
+	fdf->scalx = 20;
+	fdf->scaly = 20;
+	fdf->startx = 850;
+	fdf->starty = 50;
+	fdf->color = PEAK_COLOR;
 	//fdf->angle_y = cos(M_PI / 3);
 	//fdf->angle_x = fdf->angle_y * sin(M_PI / 6);
 	//fdf->x_value = 1.00;
@@ -83,8 +88,8 @@ void	redraw(t_fdf *fdf)
 {
 	mlx_clear_window(fdf->mlx, fdf->win);
 	//draw_thing(fdf);
-	draw_hgrid(fdf);
 	draw_vgrid(fdf);
+	draw_hgrid(fdf);
 	write_legend(fdf);
 }
 
