@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/17 18:35:00 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:59:31 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@
 # include <stdio.h>
 
 # include <unistd.h>
-
-typedef struct	s_image
-{
-	char	*data;
-	int		size;
-	int		endian;
-	int		bpp;
-}				t_image;
 
 typedef struct	s_fdf
 {
@@ -54,30 +46,18 @@ typedef struct	s_fdf
 	int			index_y;
 	int			count_up;
 	int			count_side;
-	int			distance;
-	double		angle_y;
-	double		angle_x;
-	double		x_value;
-	int			zoom;
-	int			iso;
-	t_image		image;
-	int			new_x0;
-	int			new_y0;
-	int			new_x1;
-	int			new_y1;
-	int			*map_val;
-	int			scalx;
-	int			scaly;
-	int			startx;
-	int			starty;
+	int			dist_x;
+	int			dist_y;
+	int			init_x;
+	int			init_y;
 }				t_fdf;
 
 /*
 ** Macros
 */
 
-# define WIN_H 1080
-# define WIN_W 1920
+# define WIN_H 720
+# define WIN_W 1280
 # define LINE_COLOR 0xd9d9d9
 # define BG_COLOR 0x404040
 # define PEAK_COLOR 0x4da6ff

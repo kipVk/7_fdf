@@ -6,31 +6,23 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:31:12 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/24 15:34:32 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:34:13 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_sqrt(int nb)
+double		ft_sqrt(double nb)
 {
-	int		sq;
-	int		count;
+	double		sq;
+	double		count;
 
-	count = 1;
-	sq = 0;
-	if (nb == 0)
-		sq = 0;
-	else if (nb == 1)
-		sq = 1;
-	else
+	sq = nb / 2.2;
+	count = 0.0;
+	while(sq!= count)
 	{
-		while (++count < nb)
-		{
-			if ((count * count) == nb)
-				sq = count;
-		}
+		count = sq;
+		sq = (nb / count + count) / 2.0;
 	}
-	ft_putnbr(sq);
 	return (sq);
 }

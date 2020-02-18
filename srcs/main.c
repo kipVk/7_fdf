@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/17 18:39:37 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:56:45 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,23 @@ int		key_press(int key, t_fdf *fdf)
 	if (key == LEFT_A)
 		fdf->count_side -= SIDE_VALUE;
 	if (key == ZOOM_I)
-		fdf->distance += SIDE_VALUE;
+	{
+		fdf->dist_x += SIDE_VALUE;
+		fdf->dist_y -= SIDE_VALUE;
+		fdf->init_x += SIDE_VALUE;
+		fdf->init_y -= SIDE_VALUE;
+	}
 	if (key == ZOOM_O)
-		fdf->distance -= SIDE_VALUE;
-	if (key == 49)
-		fdf->angle_y *= (fdf->iso++ % 2) ? 0.2 : 0.3;
+	{
+		fdf->dist_x -= SIDE_VALUE;
+		fdf->dist_y += SIDE_VALUE;
+		fdf->init_x -= SIDE_VALUE;
+		fdf->init_y += SIDE_VALUE;
+	}
+	//if (key == 49)
+	//{
+
+	//}
 	//ft_putnbr(key);
 	redraw(fdf);
 	return (0);
@@ -60,19 +72,7 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->length = 0;
 	fdf->count_up = 0;
 	fdf->count_side = 0;
-	fdf->distance = DISTANCE;
-	fdf->scalx = 20;
-	fdf->scaly = 20;
-	fdf->startx = 850;
-	fdf->starty = 50;
 	fdf->color = PEAK_COLOR;
-	//fdf->angle_y = cos(M_PI / 3);
-	//fdf->angle_x = fdf->angle_y * sin(M_PI / 6);
-	//fdf->x_value = 1.00;
-	//fdf->zoom = ceil((fdf->length > fdf->lines)) \
-	//	? (WIN_W / fdf->length) + 2 \
-	//	: (WIN_H / fdf->lines) + 2;
-	//fdf->iso = 1;
 }
 
 void	write_legend(t_fdf *fdf)
@@ -112,6 +112,11 @@ int		main(int ac, char **av)
 		file = open(av[1], O_RDONLY);
 		ini_fdf(fdf);
 		read_file(file, fdf);
+		fdf->dist_x = (WIN_W / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
+		fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
+		fdf->init_x = (WIN_W / 3);
+		fdf->init_y = (WIN_H / 10);
+		
 		redraw(fdf);
 		mlx_hook(fdf->win, 2, 0, key_press, fdf);
 		mlx_hook(fdf->win, 4, 0, mouse_press, fdf->mlx);
