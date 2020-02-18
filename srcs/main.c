@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 21:28:28 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:00:14 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int		key_press(int key, t_fdf *fdf)
 		fdf->count_side += SIDE_VALUE;
 	if (key == LEFT_A)
 		fdf->count_side -= SIDE_VALUE;
-	if (key == ZOOM_I)
+	if (key == Q_K)
 	{
 		fdf->dist_x += SIDE_VALUE;
 		fdf->dist_y -= SIDE_VALUE;
 		fdf->init_x += SIDE_VALUE;
 		fdf->init_y -= SIDE_VALUE;
 	}
-	if (key == ZOOM_O)
+	if (key == A_K)
 	{
 		fdf->dist_x -= SIDE_VALUE;
 		fdf->dist_y += SIDE_VALUE;
@@ -42,10 +42,16 @@ int		key_press(int key, t_fdf *fdf)
 		fdf->inc_z += 1;
 	if (key == S_K)
 		fdf->inc_z -= 1;
-	//if (key == 49)
-	//{
-
-	//}
+	if (key == 49)
+		fdf->mul_x += 1;
+	if (key == ZOOM_I)
+	{
+		fdf->mul_x += 1;
+	}
+	if (key == ZOOM_O)
+	{
+		fdf->mul_x -= 13;
+	}
 	//ft_putnbr(key);
 	redraw(fdf);
 	return (0);
@@ -78,6 +84,7 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->count_side = 0;
 	fdf->color = PEAK_COLOR;
 	fdf->inc_z = 3;
+	fdf->mul_x = 1;
 }
 
 void	write_legend(t_fdf *fdf)
@@ -87,15 +94,21 @@ void	write_legend(t_fdf *fdf)
 	mlx_string_put (fdf->mlx, fdf->win, 10, 20, PEAK_COLOR, " v");
 	mlx_string_put (fdf->mlx, fdf->win, 10, 40, PEAK_COLOR, "ESC Close");
 	mlx_string_put (fdf->mlx, fdf->win, 10, 60, PEAK_COLOR, "+ - Zoom");
+	mlx_string_put (fdf->mlx, fdf->win, 10, 80, PEAK_COLOR, "w s Increse / Decrese");
+	mlx_string_put (fdf->mlx, fdf->win, 10, 100, PEAK_COLOR, "q a Rotate persp.");
 }
 
 void	redraw(t_fdf *fdf)
 {
+	fdf->dist_x = fdf->dist_x + fdf->mul_x;
+	fdf->dist_y = fdf->dist_y + fdf->mul_x;
+
 	mlx_clear_window(fdf->mlx, fdf->win);
 	//draw_thing(fdf);
 	draw_vgrid(fdf);
 	draw_hgrid(fdf);
 	write_legend(fdf);
+
 }
 
 int		main(int ac, char **av)
@@ -121,7 +134,6 @@ int		main(int ac, char **av)
 		fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
 		fdf->init_x = (WIN_W / 3);
 		fdf->init_y = (WIN_H / 10);
-		
 		redraw(fdf);
 		mlx_hook(fdf->win, 2, 0, key_press, fdf);
 		mlx_hook(fdf->win, 4, 0, mouse_press, fdf->mlx);
