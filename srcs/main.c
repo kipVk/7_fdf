@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 22:00:14 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:02:31 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,12 @@ void	write_legend(t_fdf *fdf)
 	mlx_string_put (fdf->mlx, fdf->win, 10, 20, PEAK_COLOR, " v");
 	mlx_string_put (fdf->mlx, fdf->win, 10, 40, PEAK_COLOR, "ESC Close");
 	mlx_string_put (fdf->mlx, fdf->win, 10, 60, PEAK_COLOR, "+ - Zoom");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 80, PEAK_COLOR, "w s Increse / Decrese");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 100, PEAK_COLOR, "q a Rotate persp.");
+	mlx_string_put (fdf->mlx, fdf->win, 10, 80, PEAK_COLOR, "w s Height");
+	mlx_string_put (fdf->mlx, fdf->win, 10, 100, PEAK_COLOR, "q a Perspective");
 }
 
 void	redraw(t_fdf *fdf)
 {
-	fdf->dist_x = fdf->dist_x + fdf->mul_x;
-	fdf->dist_y = fdf->dist_y + fdf->mul_x;
-
 	mlx_clear_window(fdf->mlx, fdf->win);
 	//draw_thing(fdf);
 	draw_vgrid(fdf);
