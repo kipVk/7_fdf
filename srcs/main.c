@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 20:56:45 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 21:28:28 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ int		key_press(int key, t_fdf *fdf)
 		fdf->init_x -= SIDE_VALUE;
 		fdf->init_y += SIDE_VALUE;
 	}
+	if (key == W_K)
+		fdf->inc_z += 1;
+	if (key == S_K)
+		fdf->inc_z -= 1;
 	//if (key == 49)
 	//{
 
@@ -73,6 +77,7 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->count_up = 0;
 	fdf->count_side = 0;
 	fdf->color = PEAK_COLOR;
+	fdf->inc_z = 3;
 }
 
 void	write_legend(t_fdf *fdf)
