@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 21:27:15 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 21:58:49 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_fdf
 	int			init_x;
 	int			init_y;
 	int			inc_z;
+	int			mul_x;
 }				t_fdf;
 
 /*
@@ -77,6 +78,8 @@ typedef struct	s_fdf
 # define ZOOM_I 69
 # define W_K 13
 # define S_K 1
+# define Q_K 12
+# define A_K 0
 
 /*
 ** Draw
