@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/02/14 14:16:35 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/02/18 18:22:56 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@
 NAME = fdf
 CC = gcc
 CFLAG = -Wall -Wextra -Werror -g
-SRCDIR = 
-INCDIR = ../includes
-LIBDIR = ../libft
+SRCDIR = srcs/
+INCDIR = includes
+LIBDIR = libft
 LIBINC = $(LIBDIR)/includes
 LIBS = -lft -lmlx
 INCLUDES = -I $(INCDIR) -I $(LIBINC)
@@ -38,7 +38,7 @@ lib:
 	@echo "Library compiling...	\033[1;32mdone\033[m"
 
 $(NAME): lib
-	@gcc -Wall -Wextra -Werror -g -o fdf $(SOURCES) -L ../libft -lft -lmlx -framework OpenGL -framework AppKit -I ../includes -I ../libft/includes
+	@gcc $(CFLAG) -o $(NAME) $(SOURCES) -L $(LIBDIR) $(LIBS) $(FRAMEWORKS) $(INCLUDES)
 	@rm -f $(OBJECTS)
 	@echo "Binary  compiling...	\033[1;32mdone\033[m"
 
@@ -56,7 +56,7 @@ fclean: clean
 re: fclean all
 
 laptop: fclean lib
-	@gcc -Wall -Wextra -Werror -g -o fdf main.c draw.c read.c -L ../libft -lft -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit -I ../includes -I ../libft/includes -I /usr/X11/include
+	@gcc $(CFLAG) -o $(NAME) $(SOURCES) -L $(LIBDIR) $(LIBS) -L /usr/X11/lib -lX11 -lXext $(FRAMEWORKS) $(INCLUDES) -I /usr/X11/include
 	@rm -f $(OBJECTS)
 	@echo "Binary  compiling...	\033[1;32mdone\033[m"
 
