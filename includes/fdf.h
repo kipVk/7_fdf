@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 20:59:31 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 21:27:15 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_fdf
 	int			dist_y;
 	int			init_x;
 	int			init_y;
+	int			inc_z;
 }				t_fdf;
 
 /*
@@ -74,6 +75,8 @@ typedef struct	s_fdf
 # define SIDE_VALUE 3
 # define ZOOM_O 78
 # define ZOOM_I 69
+# define W_K 13
+# define S_K 1
 
 /*
 ** Draw

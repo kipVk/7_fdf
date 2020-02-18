@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 20:56:16 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 21:28:47 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ int		coord_x(t_fdf *fdf, int x, int y)
 
 int		coord_y(t_fdf *fdf, int x, int y, int z)
 {
-	//if (z > 30000)
-	//	z = 30000;
-	//if (z < -30000)
-	//	z = -30000;
-	return (fdf->init_y + fdf->dist_y + fdf->count_up + (fdf->dist_y * x) + ((fdf->dist_y * y)) - ((z * 2)));
+	return (fdf->init_y + fdf->dist_y + fdf->count_up + (fdf->dist_y * x) + ((fdf->dist_y * y)) - (z));
 }
 
 void	draw_hgrid(t_fdf *fdf)
@@ -38,9 +34,9 @@ void	draw_hgrid(t_fdf *fdf)
 		while (j < fdf->length && (fdf->length - j) > 0)
 		{
 			fdf->x0 = coord_x(fdf, j, i);
-			fdf->y0 = coord_y(fdf, j, i, fdf->map[i][j]);
+			fdf->y0 = coord_y(fdf, j, i, fdf->map[i][j] * fdf->inc_z);
 			fdf->x1 = coord_x(fdf, j, i + 1);
-			fdf->y1 = coord_y(fdf, j, i + 1, fdf->map[i + 1][j]);
+			fdf->y1 = coord_y(fdf, j, i + 1, fdf->map[i + 1][j] * fdf->inc_z);
 			draw_line(fdf);
 			j++;
 		}
@@ -60,10 +56,10 @@ void	draw_vgrid(t_fdf *fdf)
 		while (j < (fdf->length - 1))
 		{
 			fdf->x0 = coord_x(fdf, j, i);
-			fdf->y0 = coord_y(fdf, j, i, fdf->map[i][j]);
+			fdf->y0 = coord_y(fdf, j, i, fdf->map[i][j] * fdf->inc_z);
 			j++;
 			fdf->x1 = coord_x(fdf, j, i);
-			fdf->y1 = coord_y(fdf, j, i, fdf->map[i][j]);
+			fdf->y1 = coord_y(fdf, j, i, fdf->map[i][j] * fdf->inc_z);
 			draw_line(fdf);
 		}
 		i++;
