@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/17 18:32:58 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:56:16 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,76 +14,16 @@
 
 int		coord_x(t_fdf *fdf, int x, int y)
 {
-	return (INIT_X - (fdf->scalx * y) + (fdf->scalx * x));
+	return (fdf->init_x + fdf->dist_x + fdf->count_side - (fdf->dist_x * y) + (fdf->dist_x * x));
 }
 
 int		coord_y(t_fdf *fdf, int x, int y, int z)
 {
-	if (z > 30000)
-		z = 30000;
-	if (z < -30000)
-		z = -30000;
-	return (INIT_Y+ ((fdf->scaly) * x) + ((fdf->scaly) * y) - (z * 2));
-}
-
-
-void	fx(t_fdf *fdf)
-{
-	/* double cx = cos(0.3);
-	double cy = cos(0.3);
-	double cz = cos(0.3);
-	double sx = sin(0.2);
-	double sy = sin(0.2);
-	double sz = sin(0.2);
-	double dx = 0.0;
-	double dy = 0.0;
-	double dz = 0.0;
-	int x = fdf->x0;
-	int y = fdf->y0;
-	int z = fdf->map[fdf->index_y][fdf->index_x];
-	int rx = 100;
-	int ry = 100;
-	int rz = 5;
-	
-	dx = (cy * ((sz * y) + (cz * x))) - (sy * z);
-	dy = (sx * ((cy * z) + (sy * ((sz * y) + (cz * x))))) + (cx * ((cz * y) - (sz * x)));
-	dz = (cx * ((cy * z) + (sy * ((sz * y) + (cz * x))))) - (sx * ((cz * y) - (sz * x)));
-
-	fdf->x0 = (dx * WIN_W) / (dz * rx) * rz;
-	fdf->y0 = (dy * WIN_H) / (dz * ry) * rz;
-
-	fdf->x0 = (rz * x) / (rz + z);
-	fdf->y0 = (rz * y) / (rz + z);
-
-	x = fdf->x1;
-	y = fdf->y1;
-
-	dx = 0.0;
-	dy = 0.0;
-	dz = 0.0;
-	
-	dx = (cy * ((sz * y) + (cz * x))) - (sy * z);
-	dy = (sx * ((cy * z) + (sy * ((sz * y) + (cz * x))))) + (cx * ((cz * y) - (sz * x)));
-	dz = (cx * ((cy * z) + (sy * ((sz * y) + (cz * x))))) - (sx * ((cz * y) - (sz * x)));
-
-	fdf->x1 = (dx * WIN_W) / (dz * rx) * rz;
-	fdf->y1 = (dy * WIN_H) / (dz * ry) * rz;
-
-	fdf->x1 = (rz * x) / (rz + z);
-	fdf->y1 = (rz * y) / (rz + z); */
-
-	int x = fdf->x0;
-	int y = fdf->y0;
-	int z = fdf->map[fdf->index_y][fdf->index_x] + 1;
-
-	fdf->x0 = x / z + 1;
-	fdf->y0 = y / z + 1;
-
-	x = fdf->x1;
-	y = fdf->y1;
-
-	fdf->x1 = x / z + 1;
-	fdf->y1 = y / z + 1;
+	//if (z > 30000)
+	//	z = 30000;
+	//if (z < -30000)
+	//	z = -30000;
+	return (fdf->init_y + fdf->dist_y + fdf->count_up + (fdf->dist_y * x) + ((fdf->dist_y * y)) - ((z * 2)));
 }
 
 void	draw_hgrid(t_fdf *fdf)
@@ -155,58 +95,3 @@ void	chose_color(t_fdf *fdf)
 		}
 	}
 }
-
-/* int		flash_x(t_fdf *fdf)
-{
-
-	return(INIT_X - (fdf->distance * fdf->index_y) + (fdf->distance * fdf->index_x));
-}
-
-int		flash_y(t_fdf *fdf)
-{
-	//if (fdf->map[fdf->index_y][fdf->index_x] > 30000)
-		//fdf->map[fdf->index_y][fdf->index_x] = 30000;
-	//if (fdf->map[fdf->index_y][fdf->index_x] < -30000)
-		//fdf->map[fdf->index_y][fdf->index_x] = -30000;
-	return(INIT_Y + (fdf->distance * fdf->index_x) + (fdf->distance * fdf->index_y) - (fdf->map[fdf->index_y][fdf->index_x] * 2));
-}
-
-void	draw_h(t_fdf *fdf)
-{
-	fdf->index_y = 0;
-	while (fdf->index_y < fdf->lines)
-	{
-		fdf->index_x = 0;
-		if (fdf->index_x < fdf->length - 1)
-		{
-			fdf->x0 = flash_x(fdf);
-			fdf->y0 = flash_y(fdf);
-			fdf->index_x++;
-			fdf->x1 = flash_x(fdf);
-			fdf->y1 = flash_y(fdf);
-			draw_line(fdf);
-		}
-		fdf->index_y++;
-	}
-}
-
-void	draw_v(t_fdf *fdf)
-{
-	fdf->index_y = 0;
-	while (fdf->index_y < (fdf->lines - 1))
-	{
-		fdf->index_x = 0;
-		if (fdf->index_x < fdf->length)
-		{
-			fdf->x0 = flash_x(fdf);
-			fdf->y0 = flash_y(fdf);
-			fdf->index_y++;
-			fdf->x1 = flash_x(fdf);
-			fdf->y1 = flash_y(fdf);
-			fdf->index_y--;
-			draw_line(fdf);
-			fdf->index_x++;
-		}
-		fdf->index_y++;
-	}
-} */
