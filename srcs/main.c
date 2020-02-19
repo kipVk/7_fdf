@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 22:02:31 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/19 22:24:40 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ int		key_press(int key, t_fdf *fdf)
 		fdf->count_side -= SIDE_VALUE;
 	if (key == Q_K)
 	{
-		fdf->dist_x += SIDE_VALUE;
+		fdf->dist_x -= SIDE_VALUE;
 		fdf->dist_y -= SIDE_VALUE;
 		fdf->init_x += SIDE_VALUE;
-		fdf->init_y -= SIDE_VALUE;
+		fdf->init_y += SIDE_VALUE;
 	}
 	if (key == A_K)
 	{
-		fdf->dist_x -= SIDE_VALUE;
+		fdf->dist_x += SIDE_VALUE;
 		fdf->dist_y += SIDE_VALUE;
 		fdf->init_x -= SIDE_VALUE;
-		fdf->init_y += SIDE_VALUE;
+		fdf->init_y -= SIDE_VALUE;
 	}
 	if (key == W_K)
 		fdf->inc_z += 1;
@@ -46,11 +46,17 @@ int		key_press(int key, t_fdf *fdf)
 		fdf->mul_x += 1;
 	if (key == ZOOM_I)
 	{
-		fdf->mul_x += 1;
+		fdf->dist_x *= 2;
+		fdf->dist_y *= 2;
+		fdf->inc_z *= 2;
 	}
 	if (key == ZOOM_O)
 	{
-		fdf->mul_x -= 13;
+		if ((fdf->dist_x / 2 == 0) || (fdf->dist_y / 2 == 0) || (fdf->inc_z / 2 == 0)) 
+			return(0);
+		fdf->dist_x /= 2;
+		fdf->dist_y /= 2;
+		fdf->inc_z /= 2;
 	}
 	//ft_putnbr(key);
 	redraw(fdf);
