@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/19 21:56:35 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/20 11:31:39 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		coord_y(t_fdf *fdf, int x, int y, int z)
 	return (fdf->init_y + fdf->dist_y + fdf->count_up + (fdf->dist_y * x) + ((fdf->dist_y * y)) - (z));
 }
 
-void	draw_hgrid(t_fdf *fdf)
+void	draw_h(t_fdf *fdf)
 {
 	int			i;
 	int			j;
@@ -44,7 +44,7 @@ void	draw_hgrid(t_fdf *fdf)
 	}
 }
 
-void	draw_vgrid(t_fdf *fdf)
+void	draw_v(t_fdf *fdf)
 {
 	int			i;
 	int			j;
@@ -63,6 +63,56 @@ void	draw_vgrid(t_fdf *fdf)
 			draw_line(fdf);
 		}
 		i++;
+	}
+}
+
+void	draw_hgrid(t_fdf *fdf)
+{
+	fdf->index_y = 0;
+	fdf->y0 = INIT_Y + fdf->count_up;
+	fdf->x0 = INIT_X + fdf->count_side;
+	fdf->x = fdf->x0;
+	while (fdf->index_y < fdf->lines)
+	{
+		fdf->index_x = 0;
+		fdf->y1 = fdf->y0;
+		fdf->x0 = fdf->x;
+		while (fdf->index_x < fdf->length)
+		{
+			chose_color(fdf);
+			if (fdf->index_x != fdf->length - 1)
+				fdf->x1 = fdf->x0 + fdf->dist_x;
+			draw_line(fdf);
+			fdf->x0 = fdf->x1;
+			fdf->index_x++;
+		}
+		fdf->index_y++;
+		fdf->y0 = fdf->y0 + fdf->dist_x;
+	}
+}
+
+void	draw_vgrid(t_fdf *fdf)
+{
+	fdf->index_x = 0;
+	fdf->y0 = INIT_Y + fdf->count_up;
+	fdf->x0 = INIT_X + fdf->count_side;
+	fdf->y = fdf->y0;
+	while (fdf->index_x < fdf->length)
+	{
+		fdf->index_y = 0;
+		fdf->x1 = fdf->x0;
+		fdf->y0 = fdf->y;
+		while (fdf->index_y < fdf->lines)
+		{
+			chose_color(fdf);
+			if (fdf->index_y != fdf->lines - 1)
+				fdf->y1 = fdf->y0 + fdf->dist_x;
+			draw_line(fdf);
+			fdf->y0 = fdf->y1;
+			fdf->index_y++;
+		}
+		fdf->index_x++;
+		fdf->x0 = fdf->x0 + fdf->dist_x;
 	}
 }
 

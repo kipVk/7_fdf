@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 21:58:49 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/20 11:38:24 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,31 @@ typedef struct	s_fdf
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			x0;
-	int			x1;
-	int			y0;
-	int			y1;
-	int			x;
-	int			y;
-	int			dx;
-	int			dy;
-	int			incx;
-	int			incy;
+	double			x0;
+	double			x1;
+	double			y0;
+	double			y1;
+	double			x;
+	double			y;
+	double			dx;
+	double			dy;
+	double			incx;
+	double			incy;
 	int			lines;
 	int			length;
 	int			**map;
 	int			color;
 	int			index_x;
 	int			index_y;
-	int			count_up;
-	int			count_side;
-	int			dist_x;
-	int			dist_y;
-	int			init_x;
-	int			init_y;
-	int			inc_z;
-	int			mul_x;
+	double			count_up;
+	double			count_side;
+	double			dist_x;
+	double			dist_y;
+	double			init_x;
+	double			init_y;
+	double			inc_z;
+	double			mul_x;
+	int				persp;
 }				t_fdf;
 
 /*
@@ -88,8 +89,8 @@ typedef struct	s_fdf
 void			draw_hgrid(t_fdf *fdf);
 void			draw_vgrid(t_fdf *fdf);
 void			chose_color(t_fdf *fdf);
-//void			draw_h(t_fdf *fdf);
-//void			draw_v(t_fdf *fdf);
+void			draw_h(t_fdf *fdf);
+void			draw_v(t_fdf *fdf);
 
 /*
 ** Bresenham
