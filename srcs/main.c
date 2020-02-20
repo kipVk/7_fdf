@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/20 12:55:25 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:36:21 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ int		mouse_press(int button, void *param)
 
 void	redraw(t_fdf *fdf)
 {
-	mlx_clear_window(fdf->mlx, fdf->win);
+	//mlx_clear_window(fdf->mlx, fdf->win);
+	fdf->img = mlx_new_image(fdf->mlx, WIN_W, WIN_H);
+	fdf->image.data = mlx_get_data_addr(fdf->img, &fdf->image.bpp, \
+		&fdf->image.size, &fdf->image.endian);
 	if (fdf->persp % 2 == 0)
 	{
 		draw_v(fdf);
@@ -132,6 +135,8 @@ void	redraw(t_fdf *fdf)
 		draw_vgrid(fdf);
 		draw_hgrid(fdf);
 	}
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
+	mlx_destroy_image(fdf->mlx, fdf->img);
 	write_legend(fdf);
 }
 

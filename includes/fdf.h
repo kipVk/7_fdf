@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/20 13:33:38 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:39:07 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,45 @@
 
 # include <unistd.h>
 
+typedef struct	s_image
+{
+	char		*data;
+	int			size;
+	int			endian;
+	int			bpp;
+}				t_image;
+
 typedef struct	s_fdf
 {
 	void		*mlx;
 	void		*win;
 	void		*img;
-	double			x0;
-	double			x1;
-	double			y0;
-	double			y1;
-	double			x;
-	double			y;
-	double			dx;
-	double			dy;
-	double			incx;
-	double			incy;
+	double		x0;
+	double		x1;
+	double		y0;
+	double		y1;
+	double		x;
+	double		y;
+	double		dx;
+	double		dy;
+	double		incx;
+	double		incy;
 	int			lines;
 	int			length;
 	int			**map;
 	int			color;
 	int			index_x;
 	int			index_y;
-	double			count_up;
-	double			count_side;
-	double			dist_x;
-	double			dist_y;
-	double			init_x;
-	double			init_y;
-	double			inc_z;
-	double			mul_x;
-	int				persp;
+	double		count_up;
+	double		count_side;
+	double		dist_x;
+	double		dist_y;
+	double		init_x;
+	double		init_y;
+	double		inc_z;
+	double		mul_x;
+	int			persp;
+	t_image		image;
 }				t_fdf;
 
 /*
