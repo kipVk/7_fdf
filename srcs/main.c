@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/20 11:48:28 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/20 12:55:25 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,21 @@ int		key_press(int key, t_fdf *fdf)
 	{
 		fdf->dist_x -= SIDE_VALUE * 0.2;
 		fdf->dist_y -= SIDE_VALUE * 0.2;
-		fdf->init_x += SIDE_VALUE * 0.2;
-		fdf->init_y += SIDE_VALUE * 0.2;
+		fdf->init_x += SIDE_VALUE;
+		fdf->init_y += SIDE_VALUE;
 	}
 	if (key == A_K)
 	{
 		fdf->dist_x += SIDE_VALUE * 0.2;
 		fdf->dist_y += SIDE_VALUE * 0.2;
-		fdf->init_x -= SIDE_VALUE * 0.2;
-		fdf->init_y -= SIDE_VALUE * 0.2;
+		fdf->init_x -= SIDE_VALUE;
+		fdf->init_y -= SIDE_VALUE;
 	}
 	if (key == W_K)
 		fdf->inc_z += 1;
 	if (key == S_K)
 		fdf->inc_z -= 1;
-	if (key == 49)
+	if (key == SCP_K)
 	{
 		fdf->persp++;
 		if (fdf->persp % 2 == 0)
@@ -88,18 +88,8 @@ int		key_press(int key, t_fdf *fdf)
 		}
 		else
 		{
-			fdf->dist_x = (WIN_W / fdf->length) * 0.7;
-			fdf->dist_y = (WIN_H / fdf->lines) * 0.7;
-			/* fdf->x0 = 0;
-			fdf->x1 = 0;
-			fdf->y0 = 0;
-			fdf->y1 = 0;
-			fdf->x = 0;
-			fdf->y = 0;
-			fdf->dx = 0;
-			fdf->dy = 0;
-			fdf->incx = 0;
-			fdf->incy = 0; */
+			fdf->dist_x = (WIN_W / fdf->length) * 0.6;
+			fdf->dist_y = (WIN_H / fdf->lines) * 0.6;
 		}
 	}	
 	if (key == ZOOM_I)
