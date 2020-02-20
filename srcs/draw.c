@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/20 11:31:39 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:35:43 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	draw_h(t_fdf *fdf)
 			fdf->y0 = coord_y(fdf, j, i, fdf->map[i][j] * fdf->inc_z);
 			fdf->x1 = coord_x(fdf, j, i + 1);
 			fdf->y1 = coord_y(fdf, j, i + 1, fdf->map[i + 1][j] * fdf->inc_z);
-			draw_line(fdf);
+			//chose_color(fdf, j, i);
+			draw_line(fdf, j, i, fdf->inc_z);
 			j++;
 		}
 		i++;
@@ -60,7 +61,8 @@ void	draw_v(t_fdf *fdf)
 			j++;
 			fdf->x1 = coord_x(fdf, j, i);
 			fdf->y1 = coord_y(fdf, j, i, fdf->map[i][j] * fdf->inc_z);
-			draw_line(fdf);
+			//chose_color(fdf, j, i);
+			draw_line(fdf, j, i, fdf->inc_z);
 		}
 		i++;
 	}
@@ -79,10 +81,10 @@ void	draw_hgrid(t_fdf *fdf)
 		fdf->x0 = fdf->x;
 		while (fdf->index_x < fdf->length)
 		{
-			chose_color(fdf);
+			//chose_color(fdf, fdf->index_x, fdf->index_y);
 			if (fdf->index_x != fdf->length - 1)
 				fdf->x1 = fdf->x0 + fdf->dist_x;
-			draw_line(fdf);
+			draw_line(fdf, fdf->index_x, fdf->index_y, fdf->inc_z);
 			fdf->x0 = fdf->x1;
 			fdf->index_x++;
 		}
@@ -104,10 +106,10 @@ void	draw_vgrid(t_fdf *fdf)
 		fdf->y0 = fdf->y;
 		while (fdf->index_y < fdf->lines)
 		{
-			chose_color(fdf);
+			//chose_color(fdf, fdf->index_x, fdf->index_y);
 			if (fdf->index_y != fdf->lines - 1)
 				fdf->y1 = fdf->y0 + fdf->dist_x;
-			draw_line(fdf);
+			draw_line(fdf, fdf->index_x, fdf->index_y, fdf->inc_z);
 			fdf->y0 = fdf->y1;
 			fdf->index_y++;
 		}
@@ -116,7 +118,17 @@ void	draw_vgrid(t_fdf *fdf)
 	}
 }
 
-void	chose_color(t_fdf *fdf)
+void	chose_color(t_fdf *fdf, int x, int y, double z)
+{
+	if ((fdf->map[y][x] * z) > 0)
+		fdf->color = PEAK_COLOR;
+	else if ((fdf->map[y][x] * z) < 0)
+		fdf->color = VALLEY_COLOR;
+	else
+		fdf->color = LINE_COLOR;
+}
+
+/* void	chose_color(t_fdf *fdf)
 {
 	if (fdf->y0 == fdf->y1)
 	{
@@ -140,4 +152,4 @@ void	chose_color(t_fdf *fdf)
 				fdf->color = LINE_COLOR;
 		}
 	}
-}
+} */

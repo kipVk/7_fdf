@@ -571,6 +571,7 @@ If we consider rx, ry as the recording surface, sx and sy as the display size, a
 
 So, with these formulas in mind, let's see if i can actually transform these data into my own program's data.
 
+Program was working with pixels, but it is encouraged to use images, so I'm going to modify it to use images.
 # Clone this repo to vogsphere
 
 Go to the kip git hub folder

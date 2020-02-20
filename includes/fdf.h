@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/20 11:38:24 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:33:38 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	s_fdf
 # define LINE_COLOR 0xd9d9d9
 # define BG_COLOR 0x404040
 # define PEAK_COLOR 0x4da6ff
+# define VALLEY_COLOR 0xffa6ff
 # define WIN_NAME "FDF"
 # define DISTANCE 25
 # define INIT_X WIN_W/5
@@ -81,6 +82,9 @@ typedef struct	s_fdf
 # define S_K 1
 # define Q_K 12
 # define A_K 0
+# define SCP_K 49
+# define E_K 14
+# define D_K 2
 
 /*
 ** Draw
@@ -88,7 +92,7 @@ typedef struct	s_fdf
 
 void			draw_hgrid(t_fdf *fdf);
 void			draw_vgrid(t_fdf *fdf);
-void			chose_color(t_fdf *fdf);
+void			chose_color(t_fdf *fdf, int x, int y, double inc_z);
 void			draw_h(t_fdf *fdf);
 void			draw_v(t_fdf *fdf);
 
@@ -96,9 +100,9 @@ void			draw_v(t_fdf *fdf);
 ** Bresenham
 */
 
-void			draw_line(t_fdf *fdf);
-void			draw_down(t_fdf *fdf);
-void			draw_up(t_fdf *fdf);
+void			draw_line(t_fdf *fdf, int x, int y, double inc_z);
+void			draw_down(t_fdf *fdf, int x, int y, double inc_z);
+void			draw_up(t_fdf *fdf, int x, int y, double inc_z);
 
 /*
 ** Main
