@@ -154,16 +154,16 @@ In the end I wanted to install the library on my laptop. The steps I took were t
 	https://kb.rice.edu/74034
 	
 4.
-	cd minilibx
-	make
-	cd test
-	./mlx-test
+	cd minilibx  
+	make  
+	cd test  
+	./mlx-test  
 
 5. After the test is done and I check it is working, I move the compilation to the right folders.
 
-	sudo cp mlx.h /usr/X11/include
-	sudo cp libmlx.a /usr/X11/lib
-	sudo cp libmlx_intel-mac.a /usr/X11/lib
+	sudo cp mlx.h /usr/X11/include  
+	sudo cp libmlx.a /usr/X11/lib  
+	sudo cp libmlx_intel-mac.a /usr/X11/lib  
 
 6. Add this to the Makefile
 
