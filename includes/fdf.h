@@ -6,11 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/02/20 15:39:07 by rcenamor         ###   ########.fr       */
-=======
-/*   Updated: 2020/02/25 14:51:00 by rcenamor         ###   ########.fr       */
->>>>>>> f24845694209c9efc7033e22c1c231080a115a7f
+/*   Updated: 2020/02/25 19:01:29 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +117,10 @@ void			draw_up(t_fdf *fdf, int x, int y, double inc_z);
 ** Main
 */
 
+void			write_legend(t_fdf *fdf);
+void			ini_fdf(t_fdf *fdf);
 void			redraw(t_fdf *fdf);
+
 
 /*
 ** Read
@@ -133,10 +132,10 @@ void			read_file(int fd, t_fdf *fdf);
 ** Keys
 */
 
-int		zoom(t_fdf *fdf, int key);
-void	space(t_fdf *fdf);
-void	rotate(t_fdf *fdf, int key);
-void	move(t_fdf *fdf, int key);
-void	change_height(t_fdf *fdf, int key);
+int				zoom(t_fdf *fdf, int key);
+void			space(t_fdf *fdf);
+void			rotate(t_fdf *fdf, int key);
+void			move(t_fdf *fdf, int key);
+int				key_press(int key, t_fdf *fdf);
 
 #endif

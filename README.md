@@ -607,7 +607,9 @@ and force the changes with
 
 		git push --force --tags origin 'refs/heads/*'
 
-After that, the author should be changed.
+After that, the author should be changed as seen on:
+
+	https://help.github.com/en/github/using-git/changing-author-info 
 
 # References
 
@@ -615,4 +617,4 @@ https://github.com/qst0/ft_libgfx
 https://github.com/GlThibault/FdF  
 https://github.com/jraleman/42_FDF  
 https://github.com/Kikoman90/FdF  
-https://help.github.com/en/github/using-git/changing-author-info  
+ 

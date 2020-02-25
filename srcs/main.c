@@ -6,11 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/02/20 16:36:21 by rcenamor         ###   ########.fr       */
-=======
-/*   Updated: 2020/02/25 14:50:36 by rcenamor         ###   ########.fr       */
->>>>>>> f24845694209c9efc7033e22c1c231080a115a7f
+/*   Updated: 2020/02/25 19:04:12 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,40 +28,9 @@ void	ini_fdf(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WIN_W, WIN_H, WIN_NAME);
-	fdf->x0 = 0;
-	fdf->x1 = 0;
-	fdf->y0 = 0;
-	fdf->y1 = 0;
-	fdf->x = 0;
-	fdf->y = 0;
-	fdf->dx = 0;
-	fdf->dy = 0;
-	fdf->incx = 0;
-	fdf->incy = 0;
-	fdf->length = 0;
-	fdf->count_up = 0;
-	fdf->count_side = 0;
 	fdf->color = PEAK_COLOR;
 	fdf->inc_z = 3;
 	fdf->mul_x = 1;
-}
-
-int		key_press(int key, t_fdf *fdf)
-{
-	if (key == ESC_K)
-		exit(0);
-	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A)
-		move(fdf, key);
-	if (key == Q_K || key == A_K)
-		rotate(fdf, key);
-	if (key == W_K || key == S_K)
-		change_height(fdf, key);
-	if (key == SPC_K)
-		space(fdf);
-	if (key == ZOOM_I || key == ZOOM_O)
-		zoom(fdf, key);
-	redraw(fdf);
-	return (0);
 }
 
 int		mouse_press(int button, void *param)
