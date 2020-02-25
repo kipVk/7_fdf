@@ -6,11 +6,15 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:29:22 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:48:16 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/*
+** Writes the key options on the screen.
+*/
 
 void	write_legend(t_fdf *fdf)
 {
@@ -24,6 +28,10 @@ void	write_legend(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 120, PEAK_COLOR, "SPACE Persp");
 }
 
+/*
+** Initializes fdf with some default values
+*/
+
 void	ini_fdf(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init();
@@ -32,6 +40,10 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->inc_z = 3;
 	fdf->mul_x = 1;
 }
+
+/*
+** Draws the map depending on the selected perspective
+*/
 
 void	redraw(t_fdf *fdf)
 {
@@ -48,6 +60,10 @@ void	redraw(t_fdf *fdf)
 	}
 	write_legend(fdf);
 }
+
+/*
+** Sets the some values of fdf for the perspective
+*/
 
 void	reset_perspective(t_fdf *fdf)
 {
