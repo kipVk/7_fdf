@@ -13,3 +13,5 @@ fdf
 a.out
 
 *.dSYM
+
+*.vscode

@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/02/25 14:40:50 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/02/25 20:17:40 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 #@$(CC) -o $(NAME) $(OBJECTS) -L $(LIBDIR) $(LIBS) $(FRAMEWORKS)
 
 NAME = fdf
+SYM = $(NAME).dSYM
 CC = gcc
 CFLAG = -Wall -Wextra -Werror -g
 SRCDIR = srcs/
@@ -51,6 +52,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -rf $(SYM)
 	@make -C $(LIBDIR) fclean
 	@echo "Complete cleaning...	\033[1;32mdone\033[m"
 
