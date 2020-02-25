@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:11:47 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/01/30 16:15:34 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 20:11:57 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int		ft_file_line_count(int fd)
 {
-	char 	*line;
+	char	*line;
 	int		count;
 
 	count = 0;
