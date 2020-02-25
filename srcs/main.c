@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/20 12:55:25 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:50:36 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	write_legend(t_fdf *fdf)
 {
-	mlx_string_put (fdf->mlx, fdf->win, 10, 10, PEAK_COLOR, " ^");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 15, PEAK_COLOR, "< > Move");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 20, PEAK_COLOR, " v");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 40, PEAK_COLOR, "ESC Close");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 60, PEAK_COLOR, "+ - Zoom");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 80, PEAK_COLOR, "w s Height");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 100, PEAK_COLOR, "q a Rotate");
-	mlx_string_put (fdf->mlx, fdf->win, 10, 120, PEAK_COLOR, "SPACE Persp");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 10, PEAK_COLOR, " ^");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 15, PEAK_COLOR, "< > Move");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 20, PEAK_COLOR, " v");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 40, PEAK_COLOR, "ESC Close");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 60, PEAK_COLOR, "+ - Zoom");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 80, PEAK_COLOR, "w s Height");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 100, PEAK_COLOR, "q a Rotate");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 120, PEAK_COLOR, "SPACE Persp");
 }
 
 void	ini_fdf(t_fdf *fdf)
@@ -50,63 +50,16 @@ int		key_press(int key, t_fdf *fdf)
 {
 	if (key == ESC_K)
 		exit(0);
-	if (key == UP_A)
-		fdf->count_up -= UP_VALUE;
-	if (key == DOWN_A)
-		fdf->count_up += UP_VALUE;
-	if (key == RIGHT_A)
-		fdf->count_side += SIDE_VALUE;
-	if (key == LEFT_A)
-		fdf->count_side -= SIDE_VALUE;
-	if (key == Q_K)
-	{
-		fdf->dist_x -= SIDE_VALUE * 0.2;
-		fdf->dist_y -= SIDE_VALUE * 0.2;
-		fdf->init_x += SIDE_VALUE;
-		fdf->init_y += SIDE_VALUE;
-	}
-	if (key == A_K)
-	{
-		fdf->dist_x += SIDE_VALUE * 0.2;
-		fdf->dist_y += SIDE_VALUE * 0.2;
-		fdf->init_x -= SIDE_VALUE;
-		fdf->init_y -= SIDE_VALUE;
-	}
-	if (key == W_K)
-		fdf->inc_z += 1;
-	if (key == S_K)
-		fdf->inc_z -= 1;
-	if (key == SCP_K)
-	{
-		fdf->persp++;
-		if (fdf->persp % 2 == 0)
-		{
-			fdf->dist_x = (WIN_W / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-			fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-			fdf->init_x = (WIN_W / 3);
-			fdf->init_y = (WIN_H / 10);
-		}
-		else
-		{
-			fdf->dist_x = (WIN_W / fdf->length) * 0.6;
-			fdf->dist_y = (WIN_H / fdf->lines) * 0.6;
-		}
-	}	
-	if (key == ZOOM_I)
-	{
-		fdf->dist_x *= 2;
-		fdf->dist_y *= 2;
-		fdf->inc_z *= 2;
-	}
-	if (key == ZOOM_O)
-	{
-		if ((fdf->dist_x / 2 == 0) || (fdf->dist_y / 2 == 0) || (fdf->inc_z / 2 == 0)) 
-			return(0);
-		fdf->dist_x /= 2;
-		fdf->dist_y /= 2;
-		fdf->inc_z /= 2;
-	}
-	//ft_putnbr(key);
+	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A)
+		move(fdf, key);
+	if (key == Q_K || key == A_K)
+		rotate(fdf, key);
+	if (key == W_K || key == S_K)
+		change_height(fdf, key);
+	if (key == SPC_K)
+		space(fdf);
+	if (key == ZOOM_I || key == ZOOM_O)
+		zoom(fdf, key);
 	redraw(fdf);
 	return (0);
 }
@@ -147,7 +100,7 @@ int		main(int ac, char **av)
 		if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 			ft_puterr("ERROR: Memory Allocation error for fdf.", 1);
 		file = open(av[1], O_RDONLY);
-		if (file <0)
+		if (file < 0)
 			ft_puterr("ERROR: File not valid.", 1);
 		fdf->lines = ft_file_line_count(file);
 		close(file);

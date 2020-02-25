@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/02/18 18:22:56 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/02/25 14:40:50 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ FRAMEWORKS = -framework OpenGL -framework AppKit
 SRC = main.c \
 	  draw.c \
 	  read.c \
-	  bre.c
+	  bre.c \
+	  keys.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))
