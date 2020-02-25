@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 14:08:22 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:56:56 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 20:08:06 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** distance between y0 and y1. "The inclination is going up"
 */
 
-void	draw_up(t_fdf *fdf, int x, int y, double inc_z)
+void	draw_up(t_fdf *fdf)
 {
 	int	inc1;
 	int	inc2;
@@ -25,7 +25,6 @@ void	draw_up(t_fdf *fdf, int x, int y, double inc_z)
 	int	i;
 
 	i = 0;
-	chose_color(fdf, x, y, inc_z);
 	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, fdf->color);
 	av = 2 * fdf->dx - fdf->dy;
 	inc1 = 2 * (fdf->dx - fdf->dy);
@@ -36,15 +35,10 @@ void	draw_up(t_fdf *fdf, int x, int y, double inc_z)
 		{
 			fdf->x0 = fdf->x0 + fdf->incx;
 			av = av + inc1;
-			//fdf->color += inc1;
 		}
 		else
-		{
 			av = av + inc2;
-			//fdf->color += inc2;
-		}
 		fdf->y0 = fdf->y0 + fdf->incy;
-		chose_color(fdf, x, y, inc_z);
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, fdf->color);
 		i++;
 	}
@@ -55,7 +49,7 @@ void	draw_up(t_fdf *fdf, int x, int y, double inc_z)
 ** distance between y0 and y1. "The inclination is going down"
 */
 
-void	draw_down(t_fdf *fdf, int x, int y, double inc_z)
+void	draw_down(t_fdf *fdf)
 {
 	int	inc1;
 	int	inc2;
@@ -63,7 +57,6 @@ void	draw_down(t_fdf *fdf, int x, int y, double inc_z)
 	int	i;
 
 	i = 0;
-	chose_color(fdf, x, y, inc_z);
 	mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, fdf->color);
 	av = 2 * fdf->dy - fdf->dx;
 	inc1 = 2 * (fdf->dy - fdf->dx);
@@ -74,15 +67,10 @@ void	draw_down(t_fdf *fdf, int x, int y, double inc_z)
 		{
 			fdf->y0 = fdf->y0 + fdf->incy;
 			av = av + inc1;
-			//fdf->color += inc1;
 		}
 		else
-		{
 			av = av + inc2;
-			//fdf->color += inc2;
-		}
 		fdf->x0 = fdf->x0 + fdf->incx;
-		chose_color(fdf, x, y, inc_z);
 		mlx_pixel_put(fdf->mlx, fdf->win, fdf->x0, fdf->y0, fdf->color);
 		i++;
 	}
@@ -94,17 +82,21 @@ void	draw_down(t_fdf *fdf, int x, int y, double inc_z)
 ** draw_high, and draw_low for the opposite case.
 */
 
-void	draw_line(t_fdf *fdf, int x, int y, double inc_z)
+void	draw_line(t_fdf *fdf)
 {
 	fdf->dx = ft_abs(fdf->x1 - fdf->x0);
 	fdf->dy = ft_abs(fdf->y1 - fdf->y0);
 	fdf->incx = fdf->x0 < fdf->x1 ? 1 : -1;
 	fdf->incy = fdf->y0 < fdf->y1 ? 1 : -1;
 	if (fdf->dx < fdf->dy)
-		draw_up(fdf, x, y, inc_z);
+		draw_up(fdf);
 	else
-		draw_down(fdf, x, y, inc_z);
+		draw_down(fdf);
 }
+
+/*
+** Calculates the transformed coordinate for the x point parsed.
+*/
 
 int		coord_x(t_fdf *fdf, int x, int y)
 {
@@ -112,7 +104,11 @@ int		coord_x(t_fdf *fdf, int x, int y)
 		(fdf->dist_x * x));
 }
 
+/*
+** Calculates the transformed coordinate for the y point parsed.
+*/
 
+int		coord_y(t_fdf *fdf, int x, int y, int z)
 {
 	return (fdf->init_y + fdf->dist_y + fdf->count_up + (fdf->dist_y * x) + \
 		((fdf->dist_y * y)) - (z));
