@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:01:29 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:25:03 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,22 +120,25 @@ void			draw_up(t_fdf *fdf, int x, int y, double inc_z);
 void			write_legend(t_fdf *fdf);
 void			ini_fdf(t_fdf *fdf);
 void			redraw(t_fdf *fdf);
+void			reset_perspective(t_fdf *fdf);
 
 
 /*
 ** Read
 */
 
-void			read_file(int fd, t_fdf *fdf);
+void			get_map_value(t_fdf *fdf, int row, char *line);
+void			read_map(t_fdf *fdf, int fd);
+void			read_file(t_fdf *fdf, char *file);
 
 /*
 ** Keys
 */
 
+int				key_press(int key, t_fdf *fdf);
 int				zoom(t_fdf *fdf, int key);
 void			space(t_fdf *fdf);
 void			rotate(t_fdf *fdf, int key);
 void			move(t_fdf *fdf, int key);
-int				key_press(int key, t_fdf *fdf);
 
 #endif

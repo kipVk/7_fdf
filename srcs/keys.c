@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:39:15 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:04:07 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:12:37 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,7 @@ void	space(t_fdf *fdf)
 {
 	fdf->persp++;
 	if (fdf->persp % 2 == 0)
-	{
-		fdf->dist_x = (WIN_W / ft_sqrt(pow((fdf->length * \
-			cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-		fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->length * \
-			cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-		fdf->init_x = (WIN_W / 3);
-		fdf->init_y = (WIN_H / 10);
-	}
+		reset_perspective(fdf);
 	else
 	{
 		fdf->dist_x = (WIN_W / fdf->length) * 0.6;

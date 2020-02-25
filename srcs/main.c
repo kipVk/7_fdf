@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:04:12 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:26:43 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ int		mouse_press(int button, void *param)
 
 void	redraw(t_fdf *fdf)
 {
-	//mlx_clear_window(fdf->mlx, fdf->win);
-	fdf->img = mlx_new_image(fdf->mlx, WIN_W, WIN_H);
-	fdf->image.data = mlx_get_data_addr(fdf->img, &fdf->image.bpp, \
-		&fdf->image.size, &fdf->image.endian);
+	mlx_clear_window(fdf->mlx, fdf->win);
 	if (fdf->persp % 2 == 0)
 	{
 		draw_v(fdf);
@@ -57,15 +54,22 @@ void	redraw(t_fdf *fdf)
 		draw_vgrid(fdf);
 		draw_hgrid(fdf);
 	}
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
-	mlx_destroy_image(fdf->mlx, fdf->img);
 	write_legend(fdf);
+}
+
+void	reset_perspective(t_fdf *fdf)
+{
+	fdf->dist_x = (WIN_W / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + \
+		pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
+	fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + \
+		pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
+	fdf->init_x = (WIN_W / 3);
+	fdf->init_y = (WIN_H / 10);
 }
 
 int		main(int ac, char **av)
 {
 	t_fdf	*fdf;
-	int		file;
 
 	if (ac != 2)
 		ft_putendl("usage ./fd [map_file]");
@@ -73,18 +77,9 @@ int		main(int ac, char **av)
 	{
 		if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 			ft_puterr("ERROR: Memory Allocation error for fdf.", 1);
-		file = open(av[1], O_RDONLY);
-		if (file < 0)
-			ft_puterr("ERROR: File not valid.", 1);
-		fdf->lines = ft_file_line_count(file);
-		close(file);
-		file = open(av[1], O_RDONLY);
 		ini_fdf(fdf);
-		read_file(file, fdf);
-		fdf->dist_x = (WIN_W / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-		fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-		fdf->init_x = (WIN_W / 3);
-		fdf->init_y = (WIN_H / 10);
+		read_file(fdf, av[1]);
+		reset_perspective(fdf);
 		redraw(fdf);
 		mlx_hook(fdf->win, 2, 0, key_press, fdf);
 		mlx_hook(fdf->win, 4, 0, mouse_press, fdf->mlx);

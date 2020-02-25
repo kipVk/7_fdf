@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:35:06 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/18 21:12:16 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:27:11 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,11 @@ void	get_map_value(t_fdf *fdf, int row, char *line)
 	}
 }
 
-void	print_file(t_fdf *fdf)
-{
-	int i;
-	int j;
+/*
+** Reads the file and calls the function that reads the values.
+*/
 
-	i = 0;
-	while (i < fdf->lines)
-	{
-		j = 0;
-		while (j < fdf->length)
-		{
-			printf(" %d", fdf->map[i][j]);
-			fflush(stdout);
-			j++;
-		}
-		i++;
-		printf("\n");
-		fflush(stdout);
-	}
-}
-
-void	read_file(int fd, t_fdf *fdf)
+void	read_map(t_fdf *fdf, int fd)
 {
 	char	*line;
 	int		i;
@@ -74,5 +57,21 @@ void	read_file(int fd, t_fdf *fdf)
 		free(line);
 		i++;
 	}
-	/*print_file(fdf);*/
+}
+
+/*
+** Reads the file gets the number of lines.
+*/
+
+void	read_file(t_fdf *fdf, char *file)
+{
+	int fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		ft_puterr("ERROR: File not valid.", 1);
+	fdf->lines = ft_file_line_count(fd);
+	close(fd);
+	fd = open(file, O_RDONLY);
+	read_map(fdf, fd);
 }
