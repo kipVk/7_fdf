@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:25:03 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:29:32 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,23 @@ typedef struct	s_fdf
 # define D_K 2
 
 /*
+** Main
+*/
+
+void			write_legend(t_fdf *fdf);
+void			ini_fdf(t_fdf *fdf);
+void			redraw(t_fdf *fdf);
+void			reset_perspective(t_fdf *fdf);
+
+/*
+** Read
+*/
+
+void			get_map_value(t_fdf *fdf, int row, char *line);
+void			read_map(t_fdf *fdf, int fd);
+void			read_file(t_fdf *fdf, char *file);
+
+/*
 ** Draw
 */
 
@@ -112,24 +129,6 @@ void			draw_v(t_fdf *fdf);
 void			draw_line(t_fdf *fdf, int x, int y, double inc_z);
 void			draw_down(t_fdf *fdf, int x, int y, double inc_z);
 void			draw_up(t_fdf *fdf, int x, int y, double inc_z);
-
-/*
-** Main
-*/
-
-void			write_legend(t_fdf *fdf);
-void			ini_fdf(t_fdf *fdf);
-void			redraw(t_fdf *fdf);
-void			reset_perspective(t_fdf *fdf);
-
-
-/*
-** Read
-*/
-
-void			get_map_value(t_fdf *fdf, int row, char *line);
-void			read_map(t_fdf *fdf, int fd);
-void			read_file(t_fdf *fdf, char *file);
 
 /*
 ** Keys

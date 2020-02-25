@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:26:43 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:29:22 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->color = PEAK_COLOR;
 	fdf->inc_z = 3;
 	fdf->mul_x = 1;
-}
-
-int		mouse_press(int button, void *param)
-{
-	param = 0;
-	if (button == 1)
-		ft_putchar('1');
-	return (0);
 }
 
 void	redraw(t_fdf *fdf)
@@ -82,7 +74,6 @@ int		main(int ac, char **av)
 		reset_perspective(fdf);
 		redraw(fdf);
 		mlx_hook(fdf->win, 2, 0, key_press, fdf);
-		mlx_hook(fdf->win, 4, 0, mouse_press, fdf->mlx);
 		mlx_loop(fdf->mlx);
 	}
 	return (0);
