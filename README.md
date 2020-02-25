@@ -580,11 +580,39 @@ Go to the kip git hub folder
         git push -f origin2 master
 
 With this, the vogsphere will have exactly the same branches, commits and pushes as the kvk repository
-  
-  
+
+To change the author of the commits, if it gets missconfigured, use this script:
+
+		#!/bin/sh
+
+		git filter-branch --env-filter '
+
+		OLD_NAME="Rebeca Cenamor garcia"
+		CORRECT_NAME="kipVk"
+		CORRECT_EMAIL="rcenamor@student.hive.fi"
+
+		if [ "$GIT_COMMITTER_NAME" = "$OLD_NAME" ]
+		then
+			export GIT_COMMITTER_NAME="$CORRECT_NAME"
+			export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+		fi
+		if [ "$GIT_AUTHOR_NAME" = "$OLD_NAME" ]
+		then
+			export GIT_AUTHOR_NAME="$CORRECT_NAME"
+			export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+		fi
+		' --tag-name-filter cat -- --branches --tags
+
+and force the changes with 
+
+		git push --force --tags origin 'refs/heads/*'
+
+After that, the author should be changed.
+
 # References
 
 https://github.com/qst0/ft_libgfx  
 https://github.com/GlThibault/FdF  
 https://github.com/jraleman/42_FDF  
 https://github.com/Kikoman90/FdF  
+https://help.github.com/en/github/using-git/changing-author-info  
