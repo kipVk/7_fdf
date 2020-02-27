@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:48:16 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:04:06 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,20 @@ void	redraw(t_fdf *fdf)
 
 void	reset_perspective(t_fdf *fdf)
 {
+	double w;
+	double h;
+
 	fdf->dist_x = (WIN_W / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + \
 		pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-	fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + \
-		pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-	fdf->init_x = (WIN_W / 3);
-	fdf->init_y = (WIN_H / 10);
+	fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->lines * cos(M_PI / 3)), 2) + \
+		pow((fdf->length * sin(M_PI / 6)), 2))) / 3;
+	w = (fdf->dist_x * cos(M_PI / 6) * fdf->length) + (fdf->dist_y * \
+		cos(M_PI / 6) * fdf->lines);
+	h = (fdf->dist_x * sin(M_PI / 6) * fdf->length) + (fdf->dist_y * \
+		sin(M_PI / 6) * fdf->lines);
+
+	fdf->init_x = ((WIN_W / 2) - (w / 2)) * 2;
+	fdf->init_y = ((WIN_H / 2) - (h / 2)) * 2;
 }
 
 int		main(int ac, char **av)
