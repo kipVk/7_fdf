@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 20:08:45 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/27 18:17:03 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	draw_v(t_fdf *fdf)
 void	draw_hgrid(t_fdf *fdf)
 {
 	fdf->index_y = 0;
-	fdf->y0 = INIT_Y + fdf->count_up;
-	fdf->x0 = INIT_X + fdf->count_side;
+	fdf->y0 = fdf->init_y + fdf->count_up;
+	fdf->x0 = fdf->init_x + fdf->count_side;
 	fdf->x = fdf->x0;
 	while (fdf->index_y < fdf->lines)
 	{
@@ -91,7 +91,7 @@ void	draw_hgrid(t_fdf *fdf)
 			fdf->index_x++;
 		}
 		fdf->index_y++;
-		fdf->y0 = fdf->y0 + fdf->dist_x;
+		fdf->y0 = fdf->y0 + fdf->dist_y;
 	}
 }
 
@@ -102,8 +102,8 @@ void	draw_hgrid(t_fdf *fdf)
 void	draw_vgrid(t_fdf *fdf)
 {
 	fdf->index_x = 0;
-	fdf->y0 = INIT_Y + fdf->count_up;
-	fdf->x0 = INIT_X + fdf->count_side;
+	fdf->y0 = fdf->init_y + fdf->count_up;
+	fdf->x0 = fdf->init_x + fdf->count_side;
 	fdf->y = fdf->y0;
 	while (fdf->index_x < fdf->length)
 	{
@@ -113,7 +113,7 @@ void	draw_vgrid(t_fdf *fdf)
 		while (fdf->index_y < fdf->lines)
 		{
 			if (fdf->index_y != fdf->lines - 1)
-				fdf->y1 = fdf->y0 + fdf->dist_x;
+				fdf->y1 = fdf->y0 + fdf->dist_y;
 			chose_color(fdf, fdf->index_x, fdf->index_y, fdf->inc_z);
 			draw_line(fdf);
 			fdf->y0 = fdf->y1;
