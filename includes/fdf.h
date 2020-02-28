@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 14:34:32 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 17:16:51 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,10 @@
 
 # include <unistd.h>
 
-typedef struct	s_image
-{
-	char		*data;
-	int			size;
-	int			endian;
-	int			bpp;
-}				t_image;
-
 typedef struct	s_fdf
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
 	double		x0;
 	double		x1;
 	double		y0;
@@ -59,9 +50,7 @@ typedef struct	s_fdf
 	double		init_x;
 	double		init_y;
 	double		inc_z;
-	double		mul_x;
 	int			persp;
-	t_image		image;
 	double		p_max_z;
 	double		n_max_z;
 }				t_fdf;
@@ -79,9 +68,6 @@ typedef struct	s_fdf
 # define VALLEY_COLOR 0x33cc33
 # define D_VALLEY_COLOR 0xff3300
 # define WIN_NAME "FDF"
-# define DISTANCE 25
-# define INIT_X WIN_W/5
-# define INIT_Y WIN_H/5
 # define ESC_K 53
 # define RIGHT_A 124
 # define LEFT_A 123

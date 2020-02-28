@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:35:06 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 13:57:39 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 17:47:28 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_map_value(t_fdf *fdf, int row, char *line)
 		fdf->length = len;
 	if (len != fdf->length)
 		ft_puterr("ERROR: The map doesn't have consistent size.", 1);
-	str = ft_split_whitespaces(line);
+	str = ft_strsplit(line, ' ');
 	if (!(fdf->map[row] = (int *)malloc(sizeof(int) * (len + 1))))
 		ft_puterr("ERROR: Memory Allocation error for fdf.map.", 1);
 	while (str[i])
@@ -41,6 +41,7 @@ void	get_map_value(t_fdf *fdf, int row, char *line)
 			fdf->n_max_z = fdf->map[row][i];
 		i++;
 	}
+	free(str);
 }
 
 /*
@@ -76,7 +77,8 @@ void	read_file(t_fdf *fdf, char *file)
 	if (fd < 0)
 		ft_puterr("ERROR: File not valid.", 1);
 	fdf->lines = ft_file_line_count(fd);
-	close(fd);
+	/*close(fd);
 	fd = open(file, O_RDONLY);
 	read_map(fdf, fd);
+	close(fd);*/
 }
