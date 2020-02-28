@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 18:53:16 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 19:44:51 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,10 @@ int		main(int ac, char **av)
 		fdf.win = mlx_new_window(&fdf.mlx, WIN_W, WIN_H, WIN_NAME);
 		ini_fdf(&fdf);
 		read_file(&fdf, av[1]);
-		/*reset_perspective(fdf);
-		redraw(fdf);
-		mlx_hook(fdf->win, 2, 0, key_press, fdf);
-		mlx_loop(fdf->mlx);*/
+		reset_perspective(&fdf);
+		redraw(&fdf);
+		mlx_hook(&fdf.win, 2, 0, key_press, &fdf);
+		//mlx_loop(&fdf.mlx);
 		
 		free_map(&fdf);
 		//free(fdf);
