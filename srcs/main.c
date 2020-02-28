@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 17:47:05 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 18:53:16 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->inc_z = 3;
 	fdf->p_max_z = 0;
 	fdf->n_max_z = 0;
+	fdf->length = 0;
+	
 }
 
 /*
@@ -116,25 +118,26 @@ t_fdf		*mlx_free(t_fdf *fdf)
 
 int		main(int ac, char **av)
 {
-	t_fdf	*fdf;
+	t_fdf	fdf;
 
-	fdf = NULL;
+	//fdf = NULL;
 	if (ac != 2)
 		ft_putendl("usage ./fd [map_file]");
 	else
 	{
-		if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
-			ft_puterr("ERROR: Memory Allocation error for fdf.", 1);
-		fdf->mlx = mlx_init();
-		fdf->win = mlx_new_window(fdf->mlx, WIN_W, WIN_H, WIN_NAME);
-		ini_fdf(fdf);
-		read_file(fdf, av[1]);
+		//if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
+			//ft_puterr("ERROR: Memory Allocation error for fdf.", 1);
+		fdf.mlx = mlx_init();
+		fdf.win = mlx_new_window(&fdf.mlx, WIN_W, WIN_H, WIN_NAME);
+		ini_fdf(&fdf);
+		read_file(&fdf, av[1]);
 		/*reset_perspective(fdf);
 		redraw(fdf);
 		mlx_hook(fdf->win, 2, 0, key_press, fdf);
 		mlx_loop(fdf->mlx);*/
-
-		//free_map(fdf);
+		
+		free_map(&fdf);
+		//free(fdf);
 		//free (fdf->mlx);
 		//free (fdf->win);
 		//mlx_free (fdf);

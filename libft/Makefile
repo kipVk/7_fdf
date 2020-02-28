@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 16:14:36 by rcenamor          #+#    #+#              #
-#    Updated: 2020/01/31 15:03:59 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/02/28 18:14:13 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INCDIR = includes/
-SRCDIR = sources/
+SRCDIR = srcs/
 SRC = ft_memset.c \
 		  ft_bzero.c \
 		  ft_memcpy.c \
@@ -102,7 +102,9 @@ SRC = ft_memset.c \
 		  ft_puterr.c \
 		  ft_count_words.c \
 		  ft_len_count.c \
-		  ft_split_whitespaces.c
+		  ft_split_whitespaces.c \
+		  ft_wrdlen.c \
+		  ft_count_space_words.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))

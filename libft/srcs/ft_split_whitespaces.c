@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 11:56:05 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 16:56:53 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 18:12:51 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_split_whitespaces(char *str)
 
 	i = 0;
 	j = -1;
-	words = ft_count_words(str);
+	words = ft_count_space_words(str);
 	res = (char **)malloc(sizeof(char*) * (words + 1));
 	while (++j < words)
 	{

@@ -617,4 +617,5 @@ https://github.com/qst0/ft_libgfx
 https://github.com/GlThibault/FdF  
 https://github.com/jraleman/42_FDF  
 https://github.com/Kikoman90/FdF  
+https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html  
  

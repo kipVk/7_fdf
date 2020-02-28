@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   ft_wrdlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/31 14:44:12 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 20:11:28 by rcenamor         ###   ########.fr       */
+/*   Created: 2019/10/30 09:37:39 by rcenamor          #+#    #+#             */
+/*   Updated: 2020/02/28 18:10:05 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_count_words(char *str)
+int		ft_wrdlen(const char *s, int i, char c)
 {
-	int i;
-	int flag;
-	int words;
+	int size;
 
-	i = 0;
-	flag = 1;
-	words = 0;
-	while (str[i])
+	size = 0;
+	while (s[i] && s[i] != c)
 	{
-		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
-			flag = 1;
-		if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t' && flag)
-		{
-			words++;
-			flag = 0;
-		}
+		size++;
 		i++;
 	}
-	return (words);
+	return (size);
 }
