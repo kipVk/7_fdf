@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 19:44:51 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 19:56:29 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->p_max_z = 0;
 	fdf->n_max_z = 0;
 	fdf->length = 0;
-	
 }
 
 /*
@@ -91,57 +90,22 @@ void	reset_perspective(t_fdf *fdf)
 	fdf->init_y = ((WIN_H / 2) - ((h / 2)));
 }
 
-void	free_map(t_fdf *fdf)
-{
-	int	y;
-
-	y = 0;
-	while (y < fdf->lines)
-	{
-		free(fdf->map[y]);
-		++y;
-	}
-	free(fdf->map);
-}
-
-t_fdf		*mlx_free(t_fdf *fdf)
-{
-	if (fdf->win != 0)
-		mlx_destroy_window(fdf->mlx, fdf->win);
-	if (fdf->mlx != 0)
-		free(fdf->mlx);
-	free(fdf);
-	return (0);
-}
-
-
-
 int		main(int ac, char **av)
 {
 	t_fdf	fdf;
 
-	//fdf = NULL;
 	if (ac != 2)
 		ft_putendl("usage ./fd [map_file]");
 	else
 	{
-		//if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
-			//ft_puterr("ERROR: Memory Allocation error for fdf.", 1);
 		fdf.mlx = mlx_init();
 		fdf.win = mlx_new_window(&fdf.mlx, WIN_W, WIN_H, WIN_NAME);
 		ini_fdf(&fdf);
 		read_file(&fdf, av[1]);
 		reset_perspective(&fdf);
 		redraw(&fdf);
-		mlx_hook(&fdf.win, 2, 0, key_press, &fdf);
-		//mlx_loop(&fdf.mlx);
-		
-		free_map(&fdf);
-		//free(fdf);
-		//free (fdf->mlx);
-		//free (fdf->win);
-		//mlx_free (fdf);
+		mlx_hook(fdf.win, 2, 0, key_press, &fdf);
+		mlx_loop(&fdf.mlx);
 	}
-	while (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/02/25 20:17:40 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/02/28 19:57:28 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = main.c \
 	  draw.c \
 	  read.c \
 	  bre.c \
-	  keys.c
+	  keys.c \
+	  color.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))

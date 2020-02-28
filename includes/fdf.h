@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 19:46:15 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 20:04:16 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void			draw_hgrid(t_fdf *fdf);
 void			draw_vgrid(t_fdf *fdf);
 void			draw_h(t_fdf *fdf);
 void			draw_v(t_fdf *fdf);
-void			chose_color(t_fdf *fdf, int x, int y, double inc_z);
 
 /*
 ** Bresenham
@@ -131,5 +130,13 @@ int				zoom(t_fdf *fdf, int key);
 void			space(t_fdf *fdf);
 void			rotate(t_fdf *fdf, int key);
 void			move(t_fdf *fdf, int key);
+
+/*
+** Color
+*/
+
+void			color_neg(t_fdf *fdf, int x, int y, double z);
+void			color_pos(t_fdf *fdf, int x, int y, double z);
+void			chose_color(t_fdf *fdf, int x, int y, double z);
 
 #endif

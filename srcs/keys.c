@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:39:15 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 19:46:32 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 19:50:04 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int		key_press(int key, t_fdf *fdf)
 		exit(0);
 	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A)
 		move(fdf, key);
-	/*if (key == Q_K || key == A_K)
+	if (key == Q_K || key == A_K)
 		rotate(fdf, key);
 	if (key == W_K)
 		fdf->inc_z += 1;
@@ -123,6 +123,6 @@ int		key_press(int key, t_fdf *fdf)
 		space(fdf);
 	if (key == ZOOM_I || key == ZOOM_O)
 		zoom(fdf, key);
-	redraw(fdf);*/
+	redraw(fdf);
 	return (0);
 }
