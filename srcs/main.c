@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:04:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/27 19:04:06 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 13:40:40 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	ini_fdf(t_fdf *fdf)
 	fdf->color = PEAK_COLOR;
 	fdf->inc_z = 3;
 	fdf->mul_x = 1;
+	fdf->p_max_z = 0;
+	fdf->n_max_z = 0;
 }
 
 /*
@@ -48,7 +50,7 @@ void	ini_fdf(t_fdf *fdf)
 void	redraw(t_fdf *fdf)
 {
 	mlx_clear_window(fdf->mlx, fdf->win);
-	if (fdf->persp % 2 == 0)
+	if (fdf->persp % 2 == 0 || fdf->persp % 3 == 0)
 	{
 		draw_v(fdf);
 		draw_h(fdf);
@@ -70,17 +72,24 @@ void	reset_perspective(t_fdf *fdf)
 	double w;
 	double h;
 
-	fdf->dist_x = (WIN_W / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + \
-		pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
-	fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->lines * cos(M_PI / 3)), 2) + \
-		pow((fdf->length * sin(M_PI / 6)), 2))) / 3;
+	if (fdf->persp == 0)
+	{
+		fdf->dist_x = (WIN_W / ft_sqrt(pow((fdf->length * cos(M_PI / 3)), 2) + \
+			pow((fdf->lines * sin(M_PI / 6)), 2))) / 3;
+		fdf->dist_y = (WIN_H / ft_sqrt(pow((fdf->lines * cos(M_PI / 3)), 2) + \
+			pow((fdf->length * sin(M_PI / 6)), 2))) / 3;
+	}
+	else if (fdf->persp == 2)
+	{
+		fdf->dist_x = (WIN_W / fdf->length) * 0.3;
+		fdf->dist_y = (WIN_H / fdf->lines) * 0.3;
+	}
 	w = (fdf->dist_x * cos(M_PI / 6) * fdf->length) + (fdf->dist_y * \
-		cos(M_PI / 6) * fdf->lines);
+		cos(M_PI / 3) * fdf->lines);
 	h = (fdf->dist_x * sin(M_PI / 6) * fdf->length) + (fdf->dist_y * \
-		sin(M_PI / 6) * fdf->lines);
-
-	fdf->init_x = ((WIN_W / 2) - (w / 2)) * 2;
-	fdf->init_y = ((WIN_H / 2) - (h / 2)) * 2;
+		sin(M_PI / 3) * fdf->lines);
+	fdf->init_x = ((WIN_W / 2) - ((w / 2)));
+	fdf->init_y = ((WIN_H / 2) - ((h / 2)));
 }
 
 int		main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/27 18:17:03 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 15:28:56 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,31 @@ void	draw_vgrid(t_fdf *fdf)
 
 void	chose_color(t_fdf *fdf, int x, int y, double z)
 {
-	if ((fdf->map[y][x] * z) > 0)
+	//printf("z: %f\n", (fdf->map[y][x] * z));
+	if ((fdf->map[y][x] * z) > 0 && (fdf->map[y][x] * z) <= \
+		(fdf->p_max_z * z) / 2)
+	{
 		fdf->color = PEAK_COLOR;
-	else if ((fdf->map[y][x] * z) < 0)
+		//printf("z: %f\n", (fdf->map[y][x] * z));
+	}
+	else if ((fdf->map[y][x] * z) > 0 && (fdf->map[y][x] * z) > \
+		(fdf->p_max_z * z) / 2)
+	{
+		fdf->color = D_PEAK_COLOR;
+		//printf("z: %f\n", (fdf->map[y][x] * z));
+	}
+	else if ((fdf->map[y][x] * z) < 0 && (fdf->map[y][x] * z) >= \
+		(fdf->n_max_z * z) / 2)
+	{
 		fdf->color = VALLEY_COLOR;
+		//printf("z: %f\n", (fdf->map[y][x] * z));
+	}
+	else if ((fdf->map[y][x] * z) < 0 && (fdf->map[y][x] * z) < \
+		(fdf->n_max_z * z) / 2)
+	{
+		fdf->color = D_VALLEY_COLOR;
+		//printf("z: %f\n", (fdf->map[y][x] * z));		
+	}
 	else
 		fdf->color = LINE_COLOR;
 }

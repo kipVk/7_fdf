@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:35:06 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/25 19:27:11 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 13:57:39 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	get_map_value(t_fdf *fdf, int row, char *line)
 	while (str[i])
 	{
 		fdf->map[row][i] = ft_atoi(str[i]);
+		if (fdf->map[row][i] > 0 && fdf->map[row][i] > fdf->p_max_z)
+			fdf->p_max_z = fdf->map[row][i];
+		if (fdf->map[row][i] < 0 && fdf->map[row][i] < fdf->n_max_z)
+			fdf->n_max_z = fdf->map[row][i];
 		i++;
 	}
 }
@@ -57,6 +61,7 @@ void	read_map(t_fdf *fdf, int fd)
 		free(line);
 		i++;
 	}
+	fdf->n_max_z = (fdf->n_max_z == 0) ? -fdf->p_max_z : fdf->n_max_z;
 }
 
 /*

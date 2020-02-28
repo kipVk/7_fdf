@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/27 17:59:49 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 14:34:32 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct	s_fdf
 	double		mul_x;
 	int			persp;
 	t_image		image;
+	double		p_max_z;
+	double		n_max_z;
 }				t_fdf;
 
 /*
@@ -72,8 +74,10 @@ typedef struct	s_fdf
 # define WIN_W 1280
 # define LINE_COLOR 0xd9d9d9
 # define BG_COLOR 0x404040
-# define PEAK_COLOR 0x4da6ff
-# define VALLEY_COLOR 0xffa6ff
+# define PEAK_COLOR 0x3399ff
+# define D_PEAK_COLOR 0xff9966
+# define VALLEY_COLOR 0x33cc33
+# define D_VALLEY_COLOR 0xff3300
 # define WIN_NAME "FDF"
 # define DISTANCE 25
 # define INIT_X WIN_W/5
@@ -84,7 +88,7 @@ typedef struct	s_fdf
 # define UP_A 126
 # define DOWN_A 125
 # define UP_VALUE 4
-# define SIDE_VALUE 3
+# define SIDE_VALUE 5
 # define ZOOM_O 78
 # define ZOOM_I 69
 # define W_K 13
