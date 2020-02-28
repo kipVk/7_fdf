@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:54:31 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 15:28:56 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 16:16:33 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,30 +130,39 @@ void	draw_vgrid(t_fdf *fdf)
 
 void	chose_color(t_fdf *fdf, int x, int y, double z)
 {
-	//printf("z: %f\n", (fdf->map[y][x] * z));
-	if ((fdf->map[y][x] * z) > 0 && (fdf->map[y][x] * z) <= \
-		(fdf->p_max_z * z) / 2)
+	if (fdf->map[y][x] < 0)
 	{
-		fdf->color = PEAK_COLOR;
-		//printf("z: %f\n", (fdf->map[y][x] * z));
+		if (z > 0)
+		{
+			if ((fdf->map[y][x] * z) <= fdf->n_max_z * z / 2)
+				fdf->color = D_VALLEY_COLOR;
+			else
+				fdf->color = VALLEY_COLOR;
+		}
+		else if (z < 0)
+		{
+			if ((fdf->map[y][x] * z) >= fdf->n_max_z * z / 2)
+				fdf->color = D_PEAK_COLOR;
+			else
+				fdf->color = PEAK_COLOR;
+		}
 	}
-	else if ((fdf->map[y][x] * z) > 0 && (fdf->map[y][x] * z) > \
-		(fdf->p_max_z * z) / 2)
+	else if (fdf->map[y][x] > 0)
 	{
-		fdf->color = D_PEAK_COLOR;
-		//printf("z: %f\n", (fdf->map[y][x] * z));
-	}
-	else if ((fdf->map[y][x] * z) < 0 && (fdf->map[y][x] * z) >= \
-		(fdf->n_max_z * z) / 2)
-	{
-		fdf->color = VALLEY_COLOR;
-		//printf("z: %f\n", (fdf->map[y][x] * z));
-	}
-	else if ((fdf->map[y][x] * z) < 0 && (fdf->map[y][x] * z) < \
-		(fdf->n_max_z * z) / 2)
-	{
-		fdf->color = D_VALLEY_COLOR;
-		//printf("z: %f\n", (fdf->map[y][x] * z));		
+		if (z < 0)
+		{
+			if ((fdf->map[y][x] * z) >= fdf->p_max_z * z / 2)
+				fdf->color = VALLEY_COLOR;
+			else
+				fdf->color = D_VALLEY_COLOR;
+		}
+		else if (z > 0)
+		{
+			if ((fdf->map[y][x] * z) >= fdf->p_max_z * z / 2)
+				fdf->color = D_PEAK_COLOR;
+			else
+				fdf->color = PEAK_COLOR;
+		}
 	}
 	else
 		fdf->color = LINE_COLOR;

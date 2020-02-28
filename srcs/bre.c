@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 14:08:22 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 12:58:34 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 16:13:46 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	draw_line(t_fdf *fdf)
 
 int		coord_x(t_fdf *fdf, int x, int y)
 {
-	 return (fdf->init_x + fdf->dist_x + fdf->count_side - (fdf->dist_x * y) + \
+	return (fdf->init_x + fdf->dist_x + fdf->count_side - (fdf->dist_x * y) + \
 		(fdf->dist_x * x));
 }
 

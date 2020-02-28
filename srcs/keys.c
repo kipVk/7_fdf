@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:39:15 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 13:47:33 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/02/28 16:15:13 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int		zoom(t_fdf *fdf, int key)
 		fdf->dist_x /= 2;
 		fdf->dist_y /= 2;
 		fdf->inc_z /= 2;
-		fdf->p_max_z = ((fdf->p_max_z / 2 == 0) ? (fdf->p_max_z = 1) : \
+		fdf->p_max_z = ((fdf->p_max_z / 2 == 0) ? 1 : \
 			(fdf->p_max_z /= 2));
-		fdf->n_max_z = ((fdf->n_max_z / -2 == 0) ? (fdf->n_max_z = -1) : \
+		fdf->n_max_z = ((fdf->n_max_z / -2 == 0) ? -1 : \
 			(fdf->n_max_z /= -2));
 	}
 	return (0);
@@ -116,17 +116,9 @@ int		key_press(int key, t_fdf *fdf)
 	if (key == Q_K || key == A_K)
 		rotate(fdf, key);
 	if (key == W_K)
-	{
 		fdf->inc_z += 1;
-		//fdf->p_max_z += 1;
-		//fdf->n_max_z -= 1;
-	}
 	if (key == S_K)
-	{
 		fdf->inc_z -= 1;
-		//fdf->p_max_z -= 1;
-		//fdf->n_max_z += 1;
-	}
 	if (key == SPC_K)
 		space(fdf);
 	if (key == ZOOM_I || key == ZOOM_O)
