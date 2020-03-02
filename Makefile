@@ -6,17 +6,13 @@
 #    By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:54:03 by rcenamor          #+#    #+#              #
-#    Updated: 2020/03/02 14:02:57 by rcenamor         ###   ########.fr        #
+#    Updated: 2020/03/02 17:59:08 by rcenamor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#@$(CC) $(CFLAG) $(INCLUDES) -c $(SOURCES)
-#@$(CC) -o $(NAME) $(OBJECTS) -L $(LIBDIR) $(LIBS) $(FRAMEWORKS)
-
 NAME = fdf
-SYM = $(NAME).dSYM
 CC = gcc
-CFLAG = -Wall -Wextra -Werror -g
+CFLAG = -Wall -Wextra -Werror
 SRCDIR = srcs/
 INCDIR = includes
 LIBDIR = libft
@@ -25,12 +21,12 @@ LIBS = -lft -lmlx
 INCLUDES = -I $(INCDIR) -I $(LIBINC)
 FRAMEWORKS = -framework OpenGL -framework AppKit
 SRC = main.c \
-	  draw.c \
-	  read.c \
-	  bre.c \
-	  keys.c \
-	  color.c \
-	  init.c
+	draw.c \
+	read.c \
+	bre.c \
+	keys.c \
+	color.c \
+	init.c
 
 SOURCES = $(addprefix $(SRCDIR), $(SRC))
 OBJECTS = $(notdir $(SOURCES:.c=.o))
@@ -54,7 +50,6 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -rf $(SYM)
 	@make -C $(LIBDIR) fclean
 	@echo "Complete cleaning...	\033[1;32mdone\033[m"
 
@@ -65,4 +60,7 @@ laptop: fclean lib
 	@rm -f $(OBJECTS)
 	@echo "Binary  compiling...	\033[1;32mdone\033[m"
 
-.PHONY: all lib clean fclean re laptop
+help:
+	@echo "Usage: make {all|lib|clean|fclean|re|laptop|help}"
+
+.PHONY: all lib clean fclean re laptop help
