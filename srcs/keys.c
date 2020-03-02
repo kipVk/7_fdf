@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:39:15 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/03/02 15:37:34 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:55:39 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int		key_press(int key, t_fdf *fdf)
 		space(fdf);
 	if (key == ZOOM_I || key == ZOOM_O)
 		zoom(fdf, key);
+	if (key == R_K)
+		reset_view(fdf);
 	redraw(fdf);
 	return (0);
 }

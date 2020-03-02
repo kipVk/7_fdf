@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:59:55 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/03/02 14:18:32 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:56:23 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	write_legend(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 80, PEAK_COLOR, "w s Height");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 100, PEAK_COLOR, "q a Rotate");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 120, PEAK_COLOR, "SPACE Persp");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 140, PEAK_COLOR, "R Reset view");
 }
 
 /*
@@ -55,6 +56,19 @@ void	init_perspective(t_fdf *fdf)
 		fdf->dist_y = fdf->dist_x;
 	fdf->init_x = (WIN_W / 2) - ((fdf->length * fdf->dist_x) / 2);
 	fdf->init_y = (WIN_H / 2) - ((fdf->lines * fdf->dist_y) / 2);
+}
+
+/*
+** Resets the view to the initial one when pressing R
+*/
+
+void	reset_view(t_fdf *fdf)
+{
+	reset_perspective(fdf);
+	fdf->inc_z = 3;
+	fdf->count_up = 0;
+	fdf->count_side = 0;
+	redraw(fdf);
 }
 
 /*

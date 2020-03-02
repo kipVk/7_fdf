@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/03/02 14:18:53 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:55:19 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct	s_fdf
 # define SPC_K 49
 # define E_K 14
 # define D_K 2
+# define R_K 15
 
 /*
 ** Main
@@ -98,6 +99,7 @@ void			redraw(t_fdf *fdf);
 void			write_legend(t_fdf *fdf);
 void			ini_fdf(t_fdf *fdf);
 void			init_perspective(t_fdf *fdf);
+void			reset_view(t_fdf *fdf);
 void			reset_perspective(t_fdf *fdf);
 
 /*
