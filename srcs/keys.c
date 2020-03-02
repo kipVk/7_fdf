@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:39:15 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 19:50:04 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/03/02 14:15:13 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,7 @@ void	space(t_fdf *fdf)
 {
 	fdf->persp++;
 	fdf->persp = (fdf->persp > 2) ? 0 : fdf->persp;
-	if (fdf->persp == 0 || fdf->persp == 2)
-		reset_perspective(fdf);
-	else
-	{
-		fdf->dist_x = (WIN_W / fdf->length) * 0.8;
-		fdf->dist_y = (WIN_H / fdf->lines) * 0.8;
-		if (fdf->dist_x > fdf->dist_y)
-			fdf->dist_x = fdf->dist_y;
-		else
-			fdf->dist_y = fdf->dist_x;
-		fdf->init_x = (WIN_W / 2) - ((fdf->length * fdf->dist_x) / 2);
-		fdf->init_y = (WIN_H / 2) - ((fdf->lines * fdf->dist_y) / 2);
-	}
+	reset_perspective(fdf);
 }
 
 /*
@@ -94,13 +82,13 @@ void	rotate(t_fdf *fdf, int key)
 void	move(t_fdf *fdf, int key)
 {
 	if (key == UP_A)
-		fdf->count_up -= UP_VALUE;
+		fdf->count_up -= UP_VALUE * fdf->dist_y;
 	if (key == DOWN_A)
-		fdf->count_up += UP_VALUE;
+		fdf->count_up += UP_VALUE * fdf->dist_y;
 	if (key == RIGHT_A)
-		fdf->count_side += SIDE_VALUE;
+		fdf->count_side += SIDE_VALUE * fdf->dist_x;
 	if (key == LEFT_A)
-		fdf->count_side -= SIDE_VALUE;
+		fdf->count_side -= SIDE_VALUE * fdf->dist_x;
 }
 
 /*

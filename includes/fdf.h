@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:15:10 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/02/28 20:04:16 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/03/02 14:18:53 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ typedef struct	s_fdf
 # define LEFT_A 123
 # define UP_A 126
 # define DOWN_A 125
-# define UP_VALUE 4
-# define SIDE_VALUE 5
+# define UP_VALUE 3
+# define SIDE_VALUE 3
 # define ZOOM_O 78
 # define ZOOM_I 69
 # define W_K 13
@@ -89,9 +89,15 @@ typedef struct	s_fdf
 ** Main
 */
 
+void			redraw(t_fdf *fdf);
+
+/*
+** Init
+*/
+
 void			write_legend(t_fdf *fdf);
 void			ini_fdf(t_fdf *fdf);
-void			redraw(t_fdf *fdf);
+void			init_perspective(t_fdf *fdf);
 void			reset_perspective(t_fdf *fdf);
 
 /*
