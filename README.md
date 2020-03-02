@@ -618,4 +618,24 @@ https://github.com/GlThibault/FdF
 https://github.com/jraleman/42_FDF  
 https://github.com/Kikoman90/FdF  
 https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html  
+https://www.kirupa.com/developer/actionscript/isometric_transforms.htm  
+https://github.com/VBrazhnik/FdF/wiki/How-to-perform-isometric-transformations%3F  
+https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html  
+https://gontjarow.github.io/MiniLibX/mlx_new_image.html  
+https://qst0.github.io/ft_libgfx/man_mlx_new_image.html  
+https://en.wikipedia.org/wiki/Isometric_projection  
+https://es.wikipedia.org/wiki/Proyecci%C3%B3n_isom%C3%A9trica  
+http://www.gandraxa.com/isometric_projection.xml  
+https://stackoverflow.com/questions/724219/how-to-convert-a-3d-point-into-2d-perspective-projection  
+https://stackoverflow.com/questions/701504/perspective-projection-determine-the-2d-screen-coordinates-x-y-of-points-in-3/701978#701978 
+https://www.cs.bham.ac.uk/~slb/courses/Graphics/g65.html  
+https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrices-what-you-need-to-know-first  
+https://en.wikipedia.org/wiki/3D_projection  
+http://clintbellanger.net/articles/isometric_math/  
+https://stackoverflow.com/questions/4615116/how-to-calculate-the-height-and-width-of-an-isometric-rectangle-square  
+https://www.sciencedirect.com/topics/computer-science/orthographic-projection  
+https://en.wikibooks.org/wiki/Cg_Programming/Vertex_Transformations  
+
+
+
  
