@@ -6,7 +6,7 @@
 /*   By: rcenamor <rcenamor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:39:15 by rcenamor          #+#    #+#             */
-/*   Updated: 2020/03/02 14:15:13 by rcenamor         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:37:34 by rcenamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int		zoom(t_fdf *fdf, int key)
 		fdf->dist_x *= 2;
 		fdf->dist_y *= 2;
 		fdf->inc_z *= 2;
-		fdf->p_max_z *= 2;
-		fdf->n_max_z *= -2;
 	}
 	if (key == ZOOM_O)
 	{
@@ -34,10 +32,6 @@ int		zoom(t_fdf *fdf, int key)
 		fdf->dist_x /= 2;
 		fdf->dist_y /= 2;
 		fdf->inc_z /= 2;
-		fdf->p_max_z = ((fdf->p_max_z / 2 == 0) ? 1 : \
-			(fdf->p_max_z /= 2));
-		fdf->n_max_z = ((fdf->n_max_z / -2 == 0) ? -1 : \
-			(fdf->n_max_z /= -2));
 	}
 	return (0);
 }
